@@ -1,0 +1,506 @@
+div.dataTables_length label {
+	font-weight: normal;
+	float: left;
+	text-align: left;
+}
+
+div.dataTables_length select {
+	width: 75px;
+}
+
+div.dataTables_filter label {
+	font-weight: normal;
+	float: right;
+}
+
+div.dataTables_filter input {
+	width: 16em;
+}
+
+div.dataTables_info {
+	padding-top: 8px;
+}
+
+div.dataTables_paginate {
+	float: right;
+	margin: 0;
+}
+
+div.dataTables_paginate ul.pagination {
+	margin: 2px 0;
+	white-space: nowrap;
+}
+
+table.dataTable td,
+table.dataTable th {
+	-webkit-box-sizing: content-box;
+	-moz-box-sizing: content-box;
+	box-sizing: content-box;
+}
+
+
+table.dataTable {
+	clear: both;
+	margin-top: 6px !important;
+	margin-bottom: 6px !important;
+	max-width: none !important;
+}
+.btn.default {
+	color: #333333;
+	background-color: #E5E5E5;
+}
+
+.input-inline {
+    display: inline-block;
+    width: auto;
+    vertical-align: middle;
+}
+
+.input-mini {
+    width: 45px !important;
+}
+
+.input-small {
+    padding: 5px 10px;
+    font-size: 13px;
+    height: 30px;
+    line-height: 30px;
+}
+
+.pagination-panel{line-height: 30px;}
+
+table.dataTable thead .sorting,
+table.dataTable thead .sorting_asc,
+table.dataTable thead .sorting_desc,
+table.dataTable thead .sorting_asc_disabled,
+table.dataTable thead .sorting_desc_disabled {
+	cursor: pointer;
+}
+
+table.dataTable thead .sorting { background: url('images/sort_both.png') no-repeat center right; }
+table.dataTable thead .sorting_asc { background: url('images/sort_asc.png') no-repeat center right; }
+table.dataTable thead .sorting_desc { background: url('images/sort_desc.png') no-repeat center right; }
+
+table.dataTable thead .sorting_asc_disabled { background: url('images/sort_asc_disabled.png') no-repeat center right; }
+table.dataTable thead .sorting_desc_disabled { background: url('images/sort_desc_disabled.png') no-repeat center right; }
+
+table.dataTable th:active {
+	outline: none;
+}
+
+/* Scrolling */
+div.dataTables_scrollHead table {
+	margin-bottom: 0 !important;
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
+}
+
+div.dataTables_scrollHead table thead tr:last-child th:first-child,
+div.dataTables_scrollHead table thead tr:last-child td:first-child {
+	border-bottom-left-radius: 0 !important;
+	border-bottom-right-radius: 0 !important;
+}
+
+div.dataTables_scrollBody table {
+	border-top: none;
+	margin-top: 0 !important;
+	margin-bottom: 0 !important;
+}
+
+div.dataTables_scrollBody tbody tr:first-child th,
+div.dataTables_scrollBody tbody tr:first-child td {
+	border-top: none;
+}
+
+div.dataTables_scrollFoot table {
+	margin-top: 0 !important;
+	border-top: none;
+}
+
+/* Frustratingly the border-collapse:collapse used by Bootstrap makes the column
+   width calculations when using scrolling impossible to align columns. We have
+   to use separate
+ */
+table.table-bordered.dataTable {
+	border-collapse: separate !important;
+}
+table.table-bordered thead th,
+table.table-bordered thead td {
+	border-left-width: 0;
+	border-top-width: 0;
+}
+table.table-bordered tbody th,
+table.table-bordered tbody td {
+	border-left-width: 0;
+	border-bottom-width: 0;
+}
+table.table-bordered th:last-child,
+table.table-bordered td:last-child {
+	border-right-width: 0;
+}
+div.dataTables_scrollHead table.table-bordered {
+	border-bottom-width: 0;
+}
+
+
+/*
+ * TableTools styles
+ */
+.table tbody tr.active td,
+.table tbody tr.active th {
+	background-color: #08C;
+	color: white;
+}
+
+.table tbody tr.active:hover td,
+.table tbody tr.active:hover th {
+	background-color: #0075b0 !important;
+}
+
+.table tbody tr.active a {
+	color: white;
+}
+
+.table-striped tbody tr.active:nth-child(odd) td,
+.table-striped tbody tr.active:nth-child(odd) th {
+	background-color: #017ebc;
+}
+
+table.DTTT_selectable tbody tr {
+	cursor: pointer;
+}
+
+div.DTTT .btn {
+	color: #333 !important;
+	font-size: 12px;
+}
+
+div.DTTT .btn:hover {
+	text-decoration: none !important;
+}
+
+ul.DTTT_dropdown.dropdown-menu {
+  z-index: 2003;
+}
+
+ul.DTTT_dropdown.dropdown-menu a {
+	color: #333 !important; /* needed only when demo_page.css is included */
+}
+
+ul.DTTT_dropdown.dropdown-menu li {
+	position: relative;
+}
+
+ul.DTTT_dropdown.dropdown-menu li:hover a {
+	background-color: #0088cc;
+	color: white !important;
+}
+
+div.DTTT_collection_background {
+	z-index: 2002;	
+}
+
+/* TableTools information display */
+div.DTTT_print_info.modal {
+	height: 150px;
+	margin-top: -75px;
+	text-align: center;
+}
+
+div.DTTT_print_info h6 {
+	font-weight: normal;
+	font-size: 28px;
+	line-height: 28px;
+	margin: 1em;
+}
+
+div.DTTT_print_info p {
+	font-size: 14px;
+	line-height: 20px;
+}
+
+
+
+/*
+ * FixedColumns styles
+ */
+div.DTFC_LeftHeadWrapper table,
+div.DTFC_LeftFootWrapper table,
+div.DTFC_RightHeadWrapper table,
+div.DTFC_RightFootWrapper table,
+table.DTFC_Cloned tr.even {
+    background-color: white;
+    margin-bottom: 0;
+}
+ 
+div.DTFC_RightHeadWrapper table ,
+div.DTFC_LeftHeadWrapper table {
+    margin-bottom: 0 !important;
+    border-top-right-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+}
+ 
+div.DTFC_RightHeadWrapper table thead tr:last-child th:first-child,
+div.DTFC_RightHeadWrapper table thead tr:last-child td:first-child,
+div.DTFC_LeftHeadWrapper table thead tr:last-child th:first-child,
+div.DTFC_LeftHeadWrapper table thead tr:last-child td:first-child {
+    border-bottom-left-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+}
+ 
+div.DTFC_RightBodyWrapper table,
+div.DTFC_LeftBodyWrapper table {
+    border-top: none;
+    margin: 0 !important;
+}
+ 
+div.DTFC_RightBodyWrapper tbody tr:first-child th,
+div.DTFC_RightBodyWrapper tbody tr:first-child td,
+div.DTFC_LeftBodyWrapper tbody tr:first-child th,
+div.DTFC_LeftBodyWrapper tbody tr:first-child td {
+    border-top: none;
+}
+ 
+div.DTFC_RightFootWrapper table,
+div.DTFC_LeftFootWrapper table {
+    border-top: none;
+}
+
+
+/*
+ * FixedHeader styles
+ */
+div.FixedHeader_Cloned table {
+	margin: 0 !important
+}
+
+/*logding*/
+div.dataTables_wrapper div.dataTables_processing{position:absolute;top:50%;left:50%;width:200px;margin-left:-100px;margin-top:-26px;text-align:center;padding:1em 0}
+
+/*sk-folding-cube*/
+.sk-folding-cube {
+    margin: 20px auto;
+    width: 40px;
+    height: 40px;
+    position: relative;
+    -webkit-transform: rotateZ(45deg);
+    transform: rotateZ(45deg);
+}
+
+.sk-folding-cube .sk-cube {
+    float: left;
+    width: 50%;
+    height: 50%;
+    position: relative;
+    -webkit-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    transform: scale(1.1);
+}
+.sk-folding-cube .sk-cube:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #333;
+    -webkit-animation: sk-foldCubeAngle 2.4s infinite linear both;
+    animation: sk-foldCubeAngle 2.4s infinite linear both;
+    -webkit-transform-origin: 100% 100%;
+    -ms-transform-origin: 100% 100%;
+    transform-origin: 100% 100%;
+}
+.sk-folding-cube .sk-cube2 {
+    -webkit-transform: scale(1.1) rotateZ(90deg);
+    transform: scale(1.1) rotateZ(90deg);
+}
+.sk-folding-cube .sk-cube3 {
+    -webkit-transform: scale(1.1) rotateZ(180deg);
+    transform: scale(1.1) rotateZ(180deg);
+}
+.sk-folding-cube .sk-cube4 {
+    -webkit-transform: scale(1.1) rotateZ(270deg);
+    transform: scale(1.1) rotateZ(270deg);
+}
+.sk-folding-cube .sk-cube2:before {
+    -webkit-animation-delay: 0.3s;
+    animation-delay: 0.3s;
+}
+.sk-folding-cube .sk-cube3:before {
+    -webkit-animation-delay: 0.6s;
+    animation-delay: 0.6s;
+}
+.sk-folding-cube .sk-cube4:before {
+    -webkit-animation-delay: 0.9s;
+    animation-delay: 0.9s;
+}
+@-webkit-keyframes sk-foldCubeAngle {
+    0%, 10% {
+        -webkit-transform: perspective(140px) rotateX(-180deg);
+        transform: perspective(140px) rotateX(-180deg);
+        opacity: 0;
+    } 25%, 75% {
+          -webkit-transform: perspective(140px) rotateX(0deg);
+          transform: perspective(140px) rotateX(0deg);
+          opacity: 1;
+      } 90%, 100% {
+            -webkit-transform: perspective(140px) rotateY(180deg);
+            transform: perspective(140px) rotateY(180deg);
+            opacity: 0;
+        }
+}
+
+@keyframes sk-foldCubeAngle {
+    0%, 10% {
+        -webkit-transform: perspective(140px) rotateX(-180deg);
+        transform: perspective(140px) rotateX(-180deg);
+        opacity: 0;
+    } 25%, 75% {
+          -webkit-transform: perspective(140px) rotateX(0deg);
+          transform: perspective(140px) rotateX(0deg);
+          opacity: 1;
+      } 90%, 100% {
+            -webkit-transform: perspective(140px) rotateY(180deg);
+            transform: perspective(140px) rotateY(180deg);
+            opacity: 0;
+        }
+}
+
+/*sk-fading-circle*/
+
+.sk-fading-circle {
+    margin: 100px auto;
+    width: 40px;
+    height: 40px;
+    position: relative;
+}
+
+.sk-fading-circle .sk-circle {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.sk-fading-circle .sk-circle:before {
+    content: '';
+    display: block;
+    margin: 0 auto;
+    width: 15%;
+    height: 15%;
+    background-color: #333;
+    border-radius: 100%;
+    -webkit-animation: sk-circleFadeDelay 1.2s infinite ease-in-out both;
+    animation: sk-circleFadeDelay 1.2s infinite ease-in-out both;
+}
+.sk-fading-circle .sk-circle2 {
+    -webkit-transform: rotate(30deg);
+    -ms-transform: rotate(30deg);
+    transform: rotate(30deg);
+}
+.sk-fading-circle .sk-circle3 {
+    -webkit-transform: rotate(60deg);
+    -ms-transform: rotate(60deg);
+    transform: rotate(60deg);
+}
+.sk-fading-circle .sk-circle4 {
+    -webkit-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+.sk-fading-circle .sk-circle5 {
+    -webkit-transform: rotate(120deg);
+    -ms-transform: rotate(120deg);
+    transform: rotate(120deg);
+}
+.sk-fading-circle .sk-circle6 {
+    -webkit-transform: rotate(150deg);
+    -ms-transform: rotate(150deg);
+    transform: rotate(150deg);
+}
+.sk-fading-circle .sk-circle7 {
+    -webkit-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
+.sk-fading-circle .sk-circle8 {
+    -webkit-transform: rotate(210deg);
+    -ms-transform: rotate(210deg);
+    transform: rotate(210deg);
+}
+.sk-fading-circle .sk-circle9 {
+    -webkit-transform: rotate(240deg);
+    -ms-transform: rotate(240deg);
+    transform: rotate(240deg);
+}
+.sk-fading-circle .sk-circle10 {
+    -webkit-transform: rotate(270deg);
+    -ms-transform: rotate(270deg);
+    transform: rotate(270deg);
+}
+.sk-fading-circle .sk-circle11 {
+    -webkit-transform: rotate(300deg);
+    -ms-transform: rotate(300deg);
+    transform: rotate(300deg);
+}
+.sk-fading-circle .sk-circle12 {
+    -webkit-transform: rotate(330deg);
+    -ms-transform: rotate(330deg);
+    transform: rotate(330deg);
+}
+.sk-fading-circle .sk-circle2:before {
+    -webkit-animation-delay: -1.1s;
+    animation-delay: -1.1s;
+}
+.sk-fading-circle .sk-circle3:before {
+    -webkit-animation-delay: -1s;
+    animation-delay: -1s;
+}
+.sk-fading-circle .sk-circle4:before {
+    -webkit-animation-delay: -0.9s;
+    animation-delay: -0.9s;
+}
+.sk-fading-circle .sk-circle5:before {
+    -webkit-animation-delay: -0.8s;
+    animation-delay: -0.8s;
+}
+.sk-fading-circle .sk-circle6:before {
+    -webkit-animation-delay: -0.7s;
+    animation-delay: -0.7s;
+}
+.sk-fading-circle .sk-circle7:before {
+    -webkit-animation-delay: -0.6s;
+    animation-delay: -0.6s;
+}
+.sk-fading-circle .sk-circle8:before {
+    -webkit-animation-delay: -0.5s;
+    animation-delay: -0.5s;
+}
+.sk-fading-circle .sk-circle9:before {
+    -webkit-animation-delay: -0.4s;
+    animation-delay: -0.4s;
+}
+.sk-fading-circle .sk-circle10:before {
+    -webkit-animation-delay: -0.3s;
+    animation-delay: -0.3s;
+}
+.sk-fading-circle .sk-circle11:before {
+    -webkit-animation-delay: -0.2s;
+    animation-delay: -0.2s;
+}
+.sk-fading-circle .sk-circle12:before {
+    -webkit-animation-delay: -0.1s;
+    animation-delay: -0.1s;
+}
+
+@-webkit-keyframes sk-circleFadeDelay {
+    0%, 39%, 100% { opacity: 0; }
+    40% { opacity: 1; }
+}
+
+@keyframes sk-circleFadeDelay {
+    0%, 39%, 100% { opacity: 0; }
+    40% { opacity: 1; }
+}
