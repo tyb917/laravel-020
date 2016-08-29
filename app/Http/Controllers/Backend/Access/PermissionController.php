@@ -25,13 +25,13 @@ class PermissionController extends Controller
 
 
     /**
-     * Display a listing of the resource.
+     * 权限列表页
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        return view('backend.permission.index');
+        return view('backend.access.permission.index');
     }
 
     /**
@@ -50,17 +50,17 @@ class PermissionController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * 创建权限表单页面
      *
      * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        return view('backend.permission.create');
+        return view('backend.access.permission.create');
     }
 
     /**
-     * Store a newly created resource in storage.
+     * 创建权限
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -83,19 +83,19 @@ class PermissionController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * 编辑页面
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function edit(Permission $permission)
     {
-        return view('backend.permission.edit')
+        return view('backend.access.permission.edit')
             ->withPermission($permission);
     }
 
     /**
-     * Update the specified resource in storage.
+     * 更新数据
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -108,7 +108,7 @@ class PermissionController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * 删除数据
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response

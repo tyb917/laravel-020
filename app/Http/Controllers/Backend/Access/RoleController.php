@@ -25,16 +25,18 @@ class RoleController extends Controller
 
 
     /**
-     * Display a listing of the resource.
+     * 角色列表页
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        return view('backend.role.index');
+        return view('backend.access.role.index');
     }
 
     /**
+     * 获取Datatables数据
+     *
      * @param ManageUserRequest $request
      * @return mixed
      */
@@ -73,13 +75,13 @@ class RoleController extends Controller
      */
     public function create()
     {
-        return view('backend.role.create')
+        return view('backend.access.role.create')
             ->withPermissions($this->permissions->getAllPermissions())
             ->withRoleCount($this->roles->getCount());
     }
 
     /**
-     * Store a newly created resource in storage.
+     * 创建角色
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -102,21 +104,21 @@ class RoleController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * 编辑页面
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function edit(Role $role)
     {
-        return view('backend.role.edit')
+        return view('backend.access.role.edit')
             ->withRole($role)
             ->withRolePermissions($role->permissions->pluck('id')->all())
             ->withPermissions($this->permissions->getAllPermissions());
     }
 
     /**
-     * Update the specified resource in storage.
+     * 更新数据
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -129,7 +131,7 @@ class RoleController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * 删除数据
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response

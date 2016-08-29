@@ -45,13 +45,13 @@
                 </a>
                 <ul class="sub-menu">
                     <li>
-                        <a href="/admin/user">所有用户</a>
+                        <a href="{{ route('admin.access.user.index') }}">所有用户</a>
                     </li>
                     <li>
-                        <a href="/admin/user/freeman">自由人申请</a>
+                        <a href="{{ route('admin.access.user.freeman') }}">自由人申请</a>
                     </li>
                     <li>
-                        <a href="/admin/user/applyservice">服务申请</a>
+                        <a href="{{ route('admin.access.user.applyservice') }}">服务申请</a>
                     </li>
                 </ul>
             </li>

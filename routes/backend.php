@@ -18,6 +18,8 @@ Route::group(['namespace' => 'Backend', 'as' => 'admin.'/*, 'middleware' => 'rol
          * 用户路由
          */
         Route::get('/user/get', 'UserController@get')->name('user.get');
+        Route::get('/user/freeman', 'UserController@freeman')->name('user.freeman');
+        Route::get('/user/applyservice', 'UserController@applyservice')->name('user.applyservice');
         Route::resource('/user', 'UserController');
         /**
          * 角色路由
