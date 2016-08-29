@@ -3,33 +3,27 @@
     角色管理
 @stop
 @section('content')
-{{ Form::model($role, ['route' => ['admin.role.update', $role], 'class' => 'form-horizontal', 'method' => 'PATCH', 'id' => 'edit-role']) }}
+{{ Form::model($role, ['route' => ['admin.access.role.update', $role], 'class' => 'form-horizontal', 'method' => 'PATCH', 'id' => 'edit-role']) }}
     <div class="portlet">
         <div class="portlet-title">
             <div class="caption">
                 编辑角色
             </div>
             <div class="actions btn-set">
-                <button type="button" name="back" class="btn btn-secondary-outline" onclick="location.href='{{ route('admin.role.index') }}'">
+                <button type="button" name="back" class="btn btn-secondary-outline" onclick="location.href='{{ route('admin.access.role.index') }}'">
                     <i class="fa fa-angle-left"></i>
                     返回
                 </button>
-                <button class="btn btn-secondary-outline">
-                    <i class="fa fa-rotate-left"></i>
-                    重置
-                </button>
                 <button class="btn btn-success" type="submit">
-                    <i class="fa fa-check"></i>
+                    <i class="fa fa-check-circle"></i>
                     保存
                 </button>
-                <button class="btn btn-success">
-                    <i class="fa fa-check-circle"></i> 
-                    保存继续编辑
-                </button>
-                <button class="btn btn-success">
+                @if ($role->id>3)
+                    <button class="btn btn-danger" type="button" href="{{ route('admin.access.role.destroy', $role->id) }}" data-method="delete">
                     <i class="fa fa-trash"></i> 
                     删除
                 </button>
+                @endif
             </div>
         </div>
         <div class="portlet-body">
@@ -44,7 +38,7 @@
                                 </label>
                                 <div class="col-md-10">
                                     {{ Form::text('name', $role->name, ['class' => 'form-control', 'autocomplete' => 'off']) }}
-                                    <span class="help-block"> 只能为小写字母 </span>
+                                    <span class="help-block"> 只能由小写字母组成且首字母必须大写。 </span>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -110,19 +104,47 @@
 
 @section('js')
     <script type="text/javascript">
-        var associated = $("select[name='associated-permissions']");
-        var associated_container = $("#available-permissions");
+        $(function(){
+            var associated = $("select[name='associated-permissions']");
+            var associated_container = $("#available-permissions");
 
-        if (associated.val() == "custom")
-            associated_container.removeClass('hidden');
-        else
-            associated_container.addClass('hidden');
-
-        associated.change(function() {
-            if ($(this).val() == "custom")
+            if (associated.val() == "custom")
                 associated_container.removeClass('hidden');
             else
                 associated_container.addClass('hidden');
-        });
+
+            associated.change(function() {
+                if ($(this).val() == "custom")
+                    associated_container.removeClass('hidden');
+                else
+                    associated_container.addClass('hidden');
+            });
+
+            /**
+             * 删除操作
+             */
+            $('body').on('submit', 'form[name=delete_item]', function(e){
+                e.preventDefault();
+                var form = this;
+                var link = $('[data-method="delete"]');
+                var cancel = (link.attr('data-trans-button-cancel')) ? link.attr('data-trans-button-cancel') : "返回";
+                var confirm = (link.attr('data-trans-button-confirm')) ? link.attr('data-trans-button-confirm') : "确定";
+                var title = (link.attr('data-trans-title')) ? link.attr('data-trans-title') : "警告";
+                var text = (link.attr('data-trans-text')) ? link.attr('data-trans-text') : "你确定要删除这个项目吗？";
+
+                swal({
+                    title: title,
+                    type: "warning",
+                    showCancelButton: true,
+                    cancelButtonText: cancel,
+                    confirmButtonColor: "#DD6B55",
+                    confirmButtonText: confirm,
+                    closeOnConfirm: true
+                }, function(confirmed) {
+                    if (confirmed)
+                        form.submit();
+                });
+            });
+        })
     </script>
 @stop

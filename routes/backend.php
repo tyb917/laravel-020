@@ -13,7 +13,12 @@ Route::group(['namespace' => 'Backend', 'as' => 'admin.'/*, 'middleware' => 'rol
      *
      * Note: Administrator has all permissions so you do not have to specify the administrator role everywhere.
      */
-    Route::group(['namespace' => 'Access', 'as' => 'access.'], function () {
+    Route::group(['namespace' => 'Access', 'as' => 'access.', 'prefix' => 'access'], function () {
+        /**
+         * 用户路由
+         */
+        Route::get('/user/get', 'UserController@get')->name('user.get');
+        Route::resource('/user', 'UserController');
         /**
          * 角色路由
          */

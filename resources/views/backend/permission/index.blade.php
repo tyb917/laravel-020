@@ -1,16 +1,16 @@
 @extends('backend.layouts.app')
 
 @section('page-title')
-    角色管理
+    权限管理
 @stop
 @section('content')
 <div class="portlet light portlet-fit portlet-datatable bordered">
     <div class="portlet-title">
         <div class="caption">
-            角色列表
+            权限列表
         </div>
         <div class="actions">
-            <a href="{{ route('admin.access.role.create') }}" class="btn green btn-info">
+            <a href="{{ route('admin.access.permission.create') }}" class="btn green btn-info">
                 <i class="fa fa-plus"></i>
                 <span class="hidden-xs">新建</span>
             </a>
@@ -21,32 +21,20 @@
             <table class="table table-striped table-bordered table-hover" id="roles-table">
                 <thead>
                 <tr role="row" class="heading">
-                    <th>角色代码</th>
-                    <th>角色名称</th>
-                    <th>角色权限</th>
+                    <th>权限代码</th>
+                    <th>权限名称</th>
                     <th>权限描述</th>
-                    <th>用户数</th>
-                    <th>排序</th>
                     <th>操作</th>
                 </tr>
                 <tr role="row" class="filter">
                     <td>
-                        <input type="text" class="form-control form-filter input-sm" name="role">
+                        <input type="text" class="form-control form-filter input-sm" name="name">
                     </td>
                     <td>
                         <input type="text" class="form-control form-filter input-sm" name="display_name">
                     </td>
                     <td>
-                        <input type="text" class="form-control form-filter input-sm" name="permission">
-                    </td>
-                    <td>
                         <input type="text" class="form-control form-filter input-sm" name="description">
-                    </td>
-                    <td>
-                        <input type="text" class="form-control form-filter input-sm" name="user">
-                    </td>
-                    <td> 
-                        <input type="text" class="form-control form-filter input-sm" name="sort">
                     </td>
                     <td>
                         <div class="margin-bottom-5">
@@ -80,15 +68,12 @@
                     pagingType: "bootstrap_extended",
                     autoWidth: false,
                     ajax: {
-                        url: '{{ route("admin.access.role.get") }}',
+                        url: '{{ route("admin.access.permission.get") }}',
                     },
                     columns: [
                         {data: 'name', name: 'roles.name',"orderable": true,"searchable": true},
                         {data: 'display_name', name: 'roles.display_name',"orderable": false,"searchable": false},
-                        {data: 'permissions', name: 'roles.permissions',"orderable": false,"searchable": false},
                         {data: 'description', name: 'roles.description',"orderable": true,"searchable": true},
-                        {data: 'users', name: 'roles.users',"orderable": true,"searchable": true},
-                        {data: 'sort', name: 'roles.sort',"orderable": false,"searchable": false},
                         {data: 'actions', name: 'actions', orderable: false, searchable: false}
                     ],
                     "lengthMenu": [[20, 40, 100, -1], [20, 40, 100, "全部"]],
@@ -98,7 +83,7 @@
                     "pageLength": 20,
                 }
             });
-            
+
             $(document).ajaxComplete(function(){
                 Customer.addDeleteForms();
             });

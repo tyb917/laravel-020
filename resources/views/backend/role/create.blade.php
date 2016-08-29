@@ -3,32 +3,25 @@
     角色管理
 @stop
 @section('content')
-{{ Form::open(['route' => 'admin.role.store', 'class' => 'form-horizontal', 'method' => 'post', 'id' => 'create-role']) }}
+<div id="myAlert"></div>
+{{ Form::open(['route' => 'admin.access.role.store', 'class' => 'form-horizontal', 'method' => 'post', 'id' => 'create-role']) }}
     <div class="portlet">
         <div class="portlet-title">
             <div class="caption">
                 创建角色
             </div>
             <div class="actions btn-set">
-                <button type="button" name="back" class="btn btn-secondary-outline" onclick="location.href='{{ route('admin.role.index') }}'">
+                <button type="button" name="back" class="btn btn-secondary-outline" onclick="location.href='{{ route('admin.access.role.index') }}'">
                     <i class="fa fa-angle-left"></i>
                     返回
                 </button>
-                <button class="btn btn-secondary-outline">
+                <button class="btn btn-secondary-outline" type="reset">
                     <i class="fa fa-rotate-left"></i>
                     重置
                 </button>
                 <button class="btn btn-success" type="submit">
                     <i class="fa fa-check"></i>
                     保存
-                </button>
-                <button class="btn btn-success">
-                    <i class="fa fa-check-circle"></i> 
-                    保存继续编辑
-                </button>
-                <button class="btn btn-success">
-                    <i class="fa fa-trash"></i> 
-                    删除
                 </button>
             </div>
         </div>
@@ -44,7 +37,7 @@
                                 </label>
                                 <div class="col-md-10">
                                     {{ Form::text('name', null, ['class' => 'form-control', 'autocomplete' => 'off']) }}
-                                    <span class="help-block"> 只能为小写字母 </span>
+                                    <span class="help-block"> 只能由小写字母组成且首字母必须大写。 </span>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -71,20 +64,22 @@
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-10">
-                                    {{ Form::select('associated-permissions', ['all' => '全部', 'custom' => '自定义'], 'all',['class' => 'form-control', 'id' => 'associated-permissions']) }}
+                                    {{ Form::select('associated-permissions', ['all' => '全部', 'custom' => '自定义'], 'custom',['class' => 'form-control select2', 'id' => 'associated-permissions']) }}
                                     <div id="available-permissions" class="margin-top-20 hidden">
                                         <div class="row">
                                             <div class="col-xs-12">
-                                                @if ($permissions->count())
-                                                    @foreach ($permissions as $perm)
-                                                        <label class="checkbox-inline" for="perm_{{ $perm->id }}">
-                                                            <input type="checkbox" name="permissions[]" value="{{ $perm->id }}" id="perm_{{ $perm->id }}">
-                                                            {{ $perm->display_name }}
-                                                        </label>
-                                                    @endforeach
-                                                @else
-                                                    <p>有没有可用的权限。</p>
-                                                @endif
+                                                <div class="icheck-inline">
+                                                    @if ($permissions->count())
+                                                        @foreach ($permissions as $perm)
+                                                            <label for="perm_{{ $perm->id }}">
+                                                                <input type="checkbox" name="permissions[]" value="{{ $perm->id }}" id="perm_{{ $perm->id }}" class="icheck">
+                                                                {{ $perm->display_name }}
+                                                            </label>
+                                                        @endforeach
+                                                    @else
+                                                        <p>有没有可用的权限。</p>
+                                                    @endif
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -124,5 +119,11 @@
             else
                 associated_container.addClass('hidden');
         });
+
+        $(function(){
+            $('input').iCheck({
+                checkboxClass: 'icheckbox_flat-green'
+            });
+        })
     </script>
 @stop

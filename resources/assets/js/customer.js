@@ -391,6 +391,7 @@ $(function(){
     Layout.init(); // init current layout
     QuickSidebar.init(); // init quick sidebar
     Customer.init(); // init customer features
+    Customer.addDeleteForms();
 
     /**
      * ajax默认添加token
@@ -399,9 +400,6 @@ $(function(){
         headers: {
             'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
         }
-    });
-    $(document).ajaxComplete(function(){
-        Customer.addDeleteForms();
     });
 
     /**

@@ -109,6 +109,10 @@ class RoleRepository implements RoleInterface
      */
     public function update(Role $role, $input)
     {
+    	if ($role->id < 3) {
+            throw new GeneralException('不能更改系统默认权限！');
+        }
+        
         //See if the role has all access, administrator always has all access
         if ($role->id == 1) {
             $all = true;

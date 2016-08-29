@@ -10,7 +10,7 @@ require('laravel-elixir-vue');
  | Elixir provides a clean, fluent API for defining some basic Gulp tasks
  | for your Laravel application. By default, we are compiling the Sass
  | file for our application, as well as publishing vendor resources.
- |
+ | Metronic 模板gulp 失败注意使用  cd node_modules/gulp-sass/ 然后 npm install node-sass@3.3.2版本
  */
 
 elixir(function(mix) {
@@ -30,6 +30,7 @@ elixir(function(mix) {
         'node_modules/datatables/media/js/jquery.dataTables.min.js',
         'node_modules/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js',
         'node_modules/sweetalert/dist/dist/sweetalert.min.js',
+        'node_modules/icheck/icheck.min.js',
     ],'resources/assets/js/vendor')
     /**
      * 前台样式
@@ -51,7 +52,7 @@ elixir(function(mix) {
     .styles([
         'backend/app.css',
         'vendor/jquery.dataTables.min.css',
-        'vendor/dataTables.bootstrap.css',
+        'vendor/dataTables.bootstrap.css'
     ], 'resources/assets/css/backend/plugin.css')
     /**
      * 后台样式
@@ -184,7 +185,9 @@ elixir(function(mix) {
         'vendor/jquery.dataTables.min.js',
         'vendor/dataTables.bootstrap.js',
         'vendor/bootstrap-datepicker.min.js',
+        'vendor/select2.min.js',
         'vendor/sweetalert.min.js',
+        'vendor/icheck.min.js',
         'theme.js',
         'layout.js',
         'datatable.js',

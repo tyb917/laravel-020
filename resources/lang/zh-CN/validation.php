@@ -12,7 +12,8 @@ return [
     | as the size rules. Feel free to tweak each of these messages here.
     |
     */
-    'alpha_dash_first'           => ':attribute 只能由字母、数字和斜杠组成且第一个字符必须是字母。',
+    'alpha_dash_upr_first'           => ':attribute 只能由小写字母组成且首字母必须大写。',
+    'alpha_dash_except_num'           => ':attribute 只能由小写字母、横杠组成。',
     'accepted'             => ':attribute 必须接受。',
     'active_url'           => ':attribute 不是一个有效的网址。',
     'after'                => ':attribute 必须是一个在 :date 之后的日期。',

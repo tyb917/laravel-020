@@ -13,8 +13,8 @@ use App\Repositories\Backend\Access\Permission\PermissionInterface;
 
 class RoleController extends Controller
 {
-    private $roles;
-    private $permissions;
+    protected $roles;
+    protected $permissions;
 
     public function __construct(RoleInterface $roles, PermissionInterface $permissions)
     {
@@ -87,7 +87,7 @@ class RoleController extends Controller
     public function store(RoleStoreOrUpdateRequest $request)
     {
         $this->roles->create($request->all());
-        return redirect()->route('admin.role.index')->withFlashSuccess('权限创建成功');
+        return redirect()->route('admin.access.role.index')->withFlashSuccess('权限创建成功');
     }
 
     /**
@@ -107,7 +107,7 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Role $role, RoleRequest $request)
+    public function edit(Role $role)
     {
         return view('backend.role.edit')
             ->withRole($role)
@@ -125,7 +125,7 @@ class RoleController extends Controller
     public function update(Role $role, RoleStoreOrUpdateRequest $request)
     {
         $this->roles->update($role, $request->all());
-        return redirect()->route('admin.role.index')->withFlashSuccess('更新成功');
+        return redirect()->route('admin.access.role.index')->withFlashSuccess('更新成功');
     }
 
     /**
@@ -134,9 +134,9 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Role $role, RoleRequest $request)
+    public function destroy(Role $role)
     {
         $this->roles->destroy($role);
-        return redirect()->route('admin.role.index')->withFlashSuccess('删除成功');
+        return redirect()->route('admin.access.role.index')->withFlashSuccess('删除成功');
     }
 }

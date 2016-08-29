@@ -13,7 +13,7 @@ class PermissionStoreOrUpdateRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,9 @@ class PermissionStoreOrUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => 'required|alpha_dash_except_num',
+            'display_name' => 'required',
+            'description' => 'required'
         ];
     }
 }

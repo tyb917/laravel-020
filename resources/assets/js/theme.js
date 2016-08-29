@@ -526,7 +526,7 @@ var Theme = function() {
     // Handle Select2 Dropdowns
     var handleSelect2 = function() {
         if ($().select2) {
-            $('.select2me').select2({
+            $('.select2').select2({
                 placeholder: "Select",
                 allowClear: true
             });
