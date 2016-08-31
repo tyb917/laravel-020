@@ -70,7 +70,7 @@ class PermissionRepository implements PermissionInterface
      */
     public function update(Permission $permission, $input)
     {
-        if ($permission->id < 3) {
+        if ($permission->id < 4) {
             throw new GeneralException('不能更改系统默认权限！');
         }
 
@@ -98,7 +98,7 @@ class PermissionRepository implements PermissionInterface
      */
     public function destroy(Permission $permission)
     {
-        if ($permission->id < 3) {
+        if ($permission->id < 4) {
             throw new GeneralException('不能删除系统默认权限！');
         }
 

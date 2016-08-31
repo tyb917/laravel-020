@@ -1,14 +1,11 @@
 @extends('backend.layouts.app')
 @section('page-title')
-    角色管理
+    编辑角色
 @stop
 @section('content')
 {{ Form::model($role, ['route' => ['admin.access.role.update', $role], 'class' => 'form-horizontal', 'method' => 'PATCH', 'id' => 'edit-role']) }}
     <div class="portlet">
         <div class="portlet-title">
-            <div class="caption">
-                编辑角色
-            </div>
             <div class="actions btn-set">
                 <button type="button" name="back" class="btn btn-secondary-outline" onclick="location.href='{{ route('admin.access.role.index') }}'">
                     <i class="fa fa-angle-left"></i>
@@ -69,16 +66,18 @@
                                     <div id="available-permissions" class="margin-top-20 hidden">
                                         <div class="row">
                                             <div class="col-xs-12">
-                                                @if ($permissions->count())
-                                                    @foreach ($permissions as $perm)
-                                                        <label class="checkbox-inline" for="perm_{{ $perm->id }}">
-                                                            <input type="checkbox" name="permissions[]" value="{{ $perm->id }}" id="perm_{{ $perm->id }}" {{in_array($perm->id, $role_permissions) ? 'checked' : ""}}>
-                                                            {{ $perm->display_name }}
-                                                        </label>
-                                                    @endforeach
-                                                @else
-                                                    <p>有没有可用的权限。</p>
-                                                @endif
+                                                <div class="icheck-inline">
+                                                    @if ($permissions->count())
+                                                        @foreach ($permissions as $perm)
+                                                            <label for="perm_{{ $perm->id }}">
+                                                                <input type="checkbox" name="permissions[]" value="{{ $perm->id }}" id="perm_{{ $perm->id }}" {{in_array($perm->id, $role_permissions) ? 'checked' : ""}}>
+                                                                {{ $perm->display_name }}
+                                                            </label>
+                                                        @endforeach
+                                                    @else
+                                                        <p>有没有可用的权限。</p>
+                                                    @endif
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -118,6 +117,10 @@
                     associated_container.removeClass('hidden');
                 else
                     associated_container.addClass('hidden');
+            });
+
+            $('input').iCheck({
+                checkboxClass: 'icheckbox_flat-green'
             });
 
             /**

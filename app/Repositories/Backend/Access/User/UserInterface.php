@@ -16,7 +16,7 @@ interface UserInterface
      * @param bool $trashed
      * @return mixed
      */
-    public function getForDataTable($status = 1, $trashed = false);
+    public function getForDataTable();
 
     /**
      * @param $input

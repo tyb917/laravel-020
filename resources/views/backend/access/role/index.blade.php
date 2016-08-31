@@ -1,14 +1,12 @@
 @extends('backend.layouts.app')
 
 @section('page-title')
-    角色管理
+    角色列表
 @stop
+
 @section('content')
 <div class="portlet light portlet-fit portlet-datatable bordered">
     <div class="portlet-title">
-        <div class="caption">
-            角色列表
-        </div>
         <div class="actions">
             <a href="{{ route('admin.access.role.create') }}" class="btn green btn-info">
                 <i class="fa fa-plus"></i>

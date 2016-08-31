@@ -1,14 +1,12 @@
 @extends('backend.layouts.app')
 
 @section('page-title')
-    权限管理
+    权限列表
 @stop
+
 @section('content')
 <div class="portlet light portlet-fit portlet-datatable bordered">
     <div class="portlet-title">
-        <div class="caption">
-            权限列表
-        </div>
         <div class="actions">
             <a href="{{ route('admin.access.permission.create') }}" class="btn green btn-info">
                 <i class="fa fa-plus"></i>

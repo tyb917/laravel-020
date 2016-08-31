@@ -5,10 +5,12 @@ namespace App\Models\Access\User;
 use Illuminate\Notifications\Notifiable;
 use Zizaco\Entrust\Traits\EntrustUserTrait;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Models\Access\User\Traits\Attribute\UserAttribute;
+use App\Models\Access\User\Traits\Relationship\UserRelationship;
 
 class User extends Authenticatable
 {
-    use Notifiable, EntrustUserTrait;
+    use Notifiable, EntrustUserTrait, UserAttribute, UserRelationship;
     /**
      * The attributes that are mass assignable.
      *

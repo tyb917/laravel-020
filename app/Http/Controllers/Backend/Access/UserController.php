@@ -2,20 +2,38 @@
 
 namespace App\Http\Controllers\Backend\Access;
 
-use Illuminate\Http\Request;
-
-use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Http\Requests;
+use App\Http\Requests\Backend\Access\User\UserRequest;
+use App\Models\Access\User\User;
+use App\Repositories\Backend\Access\Permission\PermissionInterface;
+use App\Repositories\Backend\Access\Role\RoleInterface;
+use App\Repositories\Backend\Access\User\UserInterface;
+use Illuminate\Http\Request;
+use Yajra\Datatables\Datatables;
 
 class UserController extends Controller
 {
+    private $users;
+    private $roles;
+    private $permissions;
+
+    public function __construct(UserInterface $users, RoleInterface $roles, PermissionInterface $permissions)
+    {
+        $this->users = $users;
+        $this->roles = $roles;
+        $this->permissions = $permissions;
+    }
+
+
+
     /**
      * 用户列表页
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {dd('我是用户首页');
+    {
         return view('backend.access.user.index');
     }
 
@@ -24,19 +42,26 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function freeman()
-    {dd('我是自由人');
-        return view('backend.access.user.index');
-    }
+    public function get(UserRequest $request)
+    {
+        return Datatables::of($this->users->getForDataTable())
+            ->addColumn('role', function($user) {
+                $roles = [];
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function applyservice()
-    {dd('服务申请');
-        return view('backend.access.user.index');
+                if ($user->roles()->count() > 0) {
+                    foreach ($user->roles as $role) {
+                        array_push($roles, $role->name);
+                    }
+
+                    return implode("<br/>", $roles);
+                } else {
+                    return '暂无';
+                }
+            })
+            ->addColumn('actions', function($user) {
+                return $user->action_buttons;
+            })
+        ->make(true);
     }
 
     /**
@@ -46,7 +71,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.access.user.create')
+            ->withRoles($this->roles->getAllRoles());
     }
 
     /**
@@ -77,9 +103,12 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user)
     {
-        //
+        return view('backend.access.user.edit')
+            ->withUser($user)
+            ->withRoles($this->roles->getAllRoles())
+            ->withUserRole($user->roles->pluck('id')->all());
     }
 
     /**

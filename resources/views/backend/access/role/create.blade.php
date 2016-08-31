@@ -1,15 +1,12 @@
 @extends('backend.layouts.app')
 @section('page-title')
-    角色管理
+    创建角色
 @stop
 @section('content')
 <div id="myAlert"></div>
 {{ Form::open(['route' => 'admin.access.role.store', 'class' => 'form-horizontal', 'method' => 'post', 'id' => 'create-role']) }}
     <div class="portlet">
         <div class="portlet-title">
-            <div class="caption">
-                创建角色
-            </div>
             <div class="actions btn-set">
                 <button type="button" name="back" class="btn btn-secondary-outline" onclick="location.href='{{ route('admin.access.role.index') }}'">
                     <i class="fa fa-angle-left"></i>

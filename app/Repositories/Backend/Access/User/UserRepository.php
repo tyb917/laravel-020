@@ -5,7 +5,6 @@ namespace App\Repositories\Backend\Access\User;
 use App\Models\Access\User\User;
 use Illuminate\Support\Facades\DB;
 use App\Repositories\Backend\Access\Role\RoleInterface;
-use App\Repositories\Frontend\Access\User\UserInterface as FrontendUserInterface;
 
 /**
  * Class EloquentUserRepository
@@ -27,7 +26,7 @@ class UserRepository implements UserInterface
      * @param RoleInterface $role
      * @param FrontendUserInterface $user
      */
-    public function __construct(RoleInterface $role, FrontendUserInterface $user)
+    public function __construct(RoleInterface $role, User $user)
     {
         $this->role = $role;
         $this->user = $user;
@@ -38,20 +37,12 @@ class UserRepository implements UserInterface
      * @param bool $trashed
      * @return mixed
      */
-    public function getForDataTable($status = 1, $trashed = false)
+    public function getForDataTable()
     {
-        /**
-         * Note: You must return deleted_at or the User getActionButtonsAttribute won't
-         * be able to differentiate what buttons to show for each row.
-         */
-        if ($trashed == "true") {
-            return User::onlyTrashed()
-                ->select(['id', 'name', 'email', 'status', 'confirmed', 'created_at', 'updated_at', 'deleted_at'])
-                ->get();
-        }
-
-        return User::select(['id', 'name', 'email', 'status', 'confirmed', 'created_at', 'updated_at', 'deleted_at'])
-            ->where('status', $status)
+        return User::select('*','users.name as name','users.id as id')
+            ->join("role_user",'role_user.user_id','=','users.id')
+            ->join("roles",'roles.id','=','role_user.role_id')
+            ->where('roles.id','<',3)
             ->get();
     }
 
@@ -62,7 +53,7 @@ class UserRepository implements UserInterface
      * @throws UserNeedsRolesException
      * @return bool
      */
-    public function create($input, $roles)
+    public function create($input, $users)
     {
         $user = $this->createUserStub($input);
 

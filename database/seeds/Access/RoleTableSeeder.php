@@ -48,14 +48,23 @@ class RoleTableSeeder extends Seeder
                 'updated_at' => Carbon::now()
             ],
             [
-                'name' => 'User',
-                'display_name' => '用户',
-                'description' => '用户',
+                'name' => 'Role',
+                'display_name' => '角色管理',
+                'description' => '角色管理',
                 'all' => false,
                 'sort' => 3,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
+            [
+                'name' => 'User',
+                'display_name' => '用户管理',
+                'description' => '用户管理',
+                'all' => false,
+                'sort' => 4,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ]
         ];
 
         DB::table(config('entrust.roles_table'))->insert($roles);

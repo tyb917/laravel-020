@@ -1,16 +1,15 @@
 @extends('backend.layouts.app')
+
 @section('page-title')
-    角色管理
+    编辑管理员
 @stop
+
 @section('content')
-{{ Form::model($role, ['route' => ['admin.access.role.update', $role], 'class' => 'form-horizontal', 'method' => 'PATCH', 'id' => 'edit-role']) }}
+{{ Form::model($user, ['route' => ['admin.access.user.update', $user], 'class' => 'form-horizontal', 'method' => 'PATCH', 'id' => 'edit-user']) }}
     <div class="portlet">
         <div class="portlet-title">
-            <div class="caption">
-                编辑角色
-            </div>
             <div class="actions btn-set">
-                <button type="button" name="back" class="btn btn-secondary-outline" onclick="location.href='{{ route('admin.access.role.index') }}'">
+                <button type="button" name="back" class="btn btn-secondary-outline" onclick="location.href='{{ route('admin.access.user.index') }}'">
                     <i class="fa fa-angle-left"></i>
                     返回
                 </button>
@@ -18,8 +17,8 @@
                     <i class="fa fa-check-circle"></i>
                     保存
                 </button>
-                @if ($role->id>3)
-                    <button class="btn btn-danger" type="button" href="{{ route('admin.access.role.destroy', $role->id) }}" data-method="delete">
+                @if ($user->id>1)
+                <button class="btn btn-danger" type="button" href="{{ route('admin.access.user.destroy', $user->id) }}" data-method="delete">
                     <i class="fa fa-trash"></i> 
                     删除
                 </button>
@@ -33,33 +32,34 @@
                         <div class="form-body">
                             <div class="form-group">
                                 <label class="col-md-2 control-label">
-                                    角色名称
+                                    用户名
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-10">
-                                    {{ Form::text('name', $role->name, ['class' => 'form-control', 'autocomplete' => 'off']) }}
-                                    <span class="help-block"> 只能由小写字母组成且首字母必须大写。 </span>
+                                    {{ Form::text('name', $user->name, ['class' => 'form-control', 'autocomplete' => 'off']) }}
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-md-2 control-label">
-                                    显示名称
+                                    角色
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-10">
-                                    {{ Form::text('display_name', $role->display_name, ['class' => 'form-control', 'autocomplete' => 'off']) }}
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            <div class="icheck-inline">
+                                                @foreach ($roles as $role)
+                                                    <label for="role_{{ $role->id }}">
+                                                        <input type="checkbox" name="permissions[]" value="{{ $role->id }}" id="role_{{ $role->id }}" {{in_array($role->id, $user_role) ? 'checked' : ""}}>
+                                                        {{ $role->display_name }}
+                                                    </label>
+                                                @endforeach
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label class="col-md-2 control-label">
-                                    角色描述
-                                    <span class="required">*</span>
-                                </label>
-                                <div class="col-md-10">
-                                    {{ Form::textarea('description', $role->description, ['class' => 'form-control']) }}
-                                </div>
-                            </div>
-                            <div class="form-group">
+                            {{-- <div class="form-group">
                                 <label class="col-md-2 control-label">
                                     相关权限
                                     <span class="required">*</span>
@@ -83,16 +83,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-2 control-label">
-                                    排序
-                                    <span class="required">*</span>
-                                </label>
-                                <div class="col-md-10">
-                                    {{ Form::text('sort', $role->sort, ['class' => 'form-control', 'autocomplete' => 'off']) }}
-                                </div>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>
@@ -105,19 +96,8 @@
 @section('js')
     <script type="text/javascript">
         $(function(){
-            var associated = $("select[name='associated-permissions']");
-            var associated_container = $("#available-permissions");
-
-            if (associated.val() == "custom")
-                associated_container.removeClass('hidden');
-            else
-                associated_container.addClass('hidden');
-
-            associated.change(function() {
-                if ($(this).val() == "custom")
-                    associated_container.removeClass('hidden');
-                else
-                    associated_container.addClass('hidden');
+            $('input').iCheck({
+                checkboxClass: 'icheckbox_flat-green'
             });
 
             /**

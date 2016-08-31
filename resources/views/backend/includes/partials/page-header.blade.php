@@ -1,14 +1,6 @@
 <!-- 面包屑开始-->
 <div class="page-bar">
-    <ul class="page-breadcrumb">
-        <li>
-            <a href="/admin">首页</a>
-            <i class="fa fa-angle-right"></i>
-        </li>
-        <li>
-            <span>仪表盘</span>
-        </li>
-    </ul>
+    {!! Breadcrumbs::renderIfExists() !!}
     <div class="page-toolbar">
         <div id="dashboard-report-range" class="pull-right tooltips btn btn-sm" data-container="body" data-placement="bottom" data-original-title="更改仪表盘日期范围">
             <i class="icon-calendar"></i>&nbsp;

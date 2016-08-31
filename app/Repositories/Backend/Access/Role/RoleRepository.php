@@ -109,12 +109,12 @@ class RoleRepository implements RoleInterface
      */
     public function update(Role $role, $input)
     {
-    	if ($role->id < 3) {
+    	if ($role->id < 4) {
             throw new GeneralException('不能更改系统默认权限！');
         }
         
         //See if the role has all access, administrator always has all access
-        if ($role->id == 1) {
+        if ($role->id == 1 || $role->id == 2) {
             $all = true;
         } else {
             $all = $input['associated-permissions'] == 'all' ? true : false;
@@ -174,7 +174,7 @@ class RoleRepository implements RoleInterface
      */
     public function destroy(Role $role)
     {
-        if ($role->id == 1 || $role->id == 2 || $role->id == 3) {
+        if ($role->id < 4) {
             throw new GeneralException('不能删除系统默认角色！');
         }
 

@@ -1,14 +1,16 @@
 @extends('backend.layouts.app')
+
 @section('page-title')
-    权限管理
+    编辑权限
 @stop
+
 @section('content')
 {{ Form::model($permission, ['route' => ['admin.access.permission.update', $permission], 'class' => 'form-horizontal', 'method' => 'PATCH', 'id' => 'edit-permission']) }}
     <div class="portlet">
         <div class="portlet-title">
-            <div class="caption">
+            {{-- <div class="caption">
                 编辑权限
-            </div>
+            </div> --}}
             <div class="actions btn-set">
                 <button type="button" name="back" class="btn btn-secondary-outline" onclick="location.href='{{ route('admin.access.permission.index') }}'">
                     <i class="fa fa-angle-left"></i>

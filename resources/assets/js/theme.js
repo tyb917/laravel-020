@@ -526,8 +526,10 @@ var Theme = function() {
     // Handle Select2 Dropdowns
     var handleSelect2 = function() {
         if ($().select2) {
-            $('.select2').select2({
+            $.fn.select2.defaults.set("theme", "bootstrap");
+            $('.select2').select2({ 
                 placeholder: "Select",
+                width: 'auto', 
                 allowClear: true
             });
         }

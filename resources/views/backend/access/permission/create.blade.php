@@ -1,14 +1,13 @@
 @extends('backend.layouts.app')
+
 @section('page-title')
-    权限管理
+    创建权限
 @stop
+
 @section('content')
 {{ Form::open(['route' => 'admin.access.permission.store', 'class' => 'form-horizontal', 'method' => 'post', 'id' => 'create-permission']) }}
     <div class="portlet">
         <div class="portlet-title">
-            <div class="caption">
-                创建权限
-            </div>
             <div class="actions btn-set">
                 <button type="button" name="back" class="btn btn-secondary-outline" onclick="location.href='{{ route('admin.access.permission.index') }}'">
                     <i class="fa fa-angle-left"></i>

@@ -1,17 +1,16 @@
 @extends('backend.layouts.app')
+
 @section('page-title')
-    角色管理
+    创建管理员
 @stop
+
 @section('content')
 <div id="myAlert"></div>
-{{ Form::open(['route' => 'admin.access.role.store', 'class' => 'form-horizontal', 'method' => 'post', 'id' => 'create-role']) }}
+{{ Form::open(['route' => 'admin.access.user.store', 'class' => 'form-horizontal', 'method' => 'post', 'id' => 'create-user']) }}
     <div class="portlet">
         <div class="portlet-title">
-            <div class="caption">
-                创建角色
-            </div>
             <div class="actions btn-set">
-                <button type="button" name="back" class="btn btn-secondary-outline" onclick="location.href='{{ route('admin.access.role.index') }}'">
+                <button type="button" name="back" class="btn btn-secondary-outline" onclick="location.href='{{ route('admin.access.user.index') }}'">
                     <i class="fa fa-angle-left"></i>
                     返回
                 </button>
@@ -32,66 +31,37 @@
                         <div class="form-body">
                             <div class="form-group">
                                 <label class="col-md-2 control-label">
-                                    角色名称
+                                    用户名
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-10">
                                     {{ Form::text('name', null, ['class' => 'form-control', 'autocomplete' => 'off']) }}
-                                    <span class="help-block"> 只能由小写字母组成且首字母必须大写。 </span>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-md-2 control-label">
-                                    显示名称
+                                    角色
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-10">
-                                    {{ Form::text('display_name', null, ['class' => 'form-control', 'autocomplete' => 'off']) }}
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-2 control-label">
-                                    角色描述
-                                    <span class="required">*</span>
-                                </label>
-                                <div class="col-md-10">
-                                    {{ Form::textarea('description', null, ['class' => 'form-control']) }}
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-2 control-label">
-                                    相关权限
-                                    <span class="required">*</span>
-                                </label>
-                                <div class="col-md-10">
-                                    {{ Form::select('associated-permissions', ['all' => '全部', 'custom' => '自定义'], 'custom',['class' => 'form-control select2', 'id' => 'associated-permissions']) }}
-                                    <div id="available-permissions" class="margin-top-20 hidden">
+                                    {{ Form::select('associated-roles', ['all' => '超级管理员', 'custom' => '普通管理员'], 'custom',['class' => 'form-control select2', 'id' => 'associated-roles']) }}
+                                    <div id="available-roles" class="margin-top-20 hidden">
                                         <div class="row">
                                             <div class="col-xs-12">
                                                 <div class="icheck-inline">
-                                                    @if ($permissions->count())
-                                                        @foreach ($permissions as $perm)
-                                                            <label for="perm_{{ $perm->id }}">
-                                                                <input type="checkbox" name="permissions[]" value="{{ $perm->id }}" id="perm_{{ $perm->id }}" class="icheck">
-                                                                {{ $perm->display_name }}
-                                                            </label>
-                                                        @endforeach
-                                                    @else
-                                                        <p>有没有可用的权限。</p>
-                                                    @endif
+                                                    @foreach ($roles as $role)
+                                                        @if ($role->id < 3)
+                                                            @continue
+                                                        @endif
+                                                        <label for="role_{{ $role->id }}">
+                                                            <input type="checkbox" name="roles[]" value="{{ $role->id }}" id="role_{{ $role->id }}">
+                                                            {{ $role->display_name }}
+                                                        </label>
+                                                    @endforeach
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-2 control-label">
-                                    排序
-                                    <span class="required">*</span>
-                                </label>
-                                <div class="col-md-10">
-                                    {{ Form::text('sort', ($role_count+1), ['class' => 'form-control', 'autocomplete' => 'off']) }}
                                 </div>
                             </div>
                         </div>
@@ -105,22 +75,23 @@
 
 @section('js')
     <script type="text/javascript">
-        var associated = $("select[name='associated-permissions']");
-        var associated_container = $("#available-permissions");
+        $(function(){
 
-        if (associated.val() == "custom")
-            associated_container.removeClass('hidden');
-        else
-            associated_container.addClass('hidden');
+            var associated = $("select[name='associated-roles']");
+            var associated_container = $("#available-roles");
 
-        associated.change(function() {
-            if ($(this).val() == "custom")
+            if (associated.val() == "custom")
                 associated_container.removeClass('hidden');
             else
                 associated_container.addClass('hidden');
-        });
 
-        $(function(){
+            associated.change(function() {
+                if ($(this).val() == "custom")
+                    associated_container.removeClass('hidden');
+                else
+                    associated_container.addClass('hidden');
+            });
+
             $('input').iCheck({
                 checkboxClass: 'icheckbox_flat-green'
             });

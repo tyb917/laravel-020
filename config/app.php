@@ -198,6 +198,14 @@ return [
          * 权限控制
          */
         App\Providers\AccessServiceProvider::class,
+        /**
+         * Active 导航选中插件
+         */
+        HieuLe\Active\ActiveServiceProvider::class,
+        /**
+         * 导航条插件
+         */
+        DaveJamesMiller\Breadcrumbs\ServiceProvider::class,
 
     ],
 
@@ -264,6 +272,14 @@ return [
          * 基于角色的权限系统
          */
         'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
+        /**
+         * Active 导航选中插件
+         */
+        'Active' => HieuLe\Active\Facades\Active::class,
+        /**
+         * 导航条插件
+         */
+        'Breadcrumbs' => DaveJamesMiller\Breadcrumbs\Facade::class,
 
     ],
 
