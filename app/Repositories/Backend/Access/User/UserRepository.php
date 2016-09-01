@@ -39,7 +39,7 @@ class UserRepository implements UserInterface
      * @return mixed
      */
     public function getForDataTable()
-    {   
+    {
         return User::leftJoin("role_user",'role_user.user_id','=','users.id')
             ->whereNotNull('role_user.user_id')
             ->get()
@@ -62,7 +62,7 @@ class UserRepository implements UserInterface
         if ($user->id == 1) {
             throw new GeneralException('创始人不允许更改！');
         }
-        
+
         $all = $input['role_user'] == 'all' ? true : false;
 
         if (! isset($input['roles'])) $input['roles'] = [];
@@ -109,7 +109,7 @@ class UserRepository implements UserInterface
         if ($user->id == 1) {
             throw new GeneralException('创始人不允许更改！');
         }
-        
+
         $all = $input['role_user'] == 'all' ? true : false;
 
         if (! isset($input['roles'])) $input['roles'] = [];

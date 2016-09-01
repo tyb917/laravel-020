@@ -21,10 +21,6 @@
                     <i class="fa fa-check"></i>
                     保存
                 </button>
-                <button class="btn btn-success">
-                    <i class="fa fa-check-circle"></i> 
-                    保存继续编辑
-                </button>
             </div>
         </div>
         <div class="portlet-body">

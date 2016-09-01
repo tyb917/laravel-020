@@ -30,7 +30,7 @@ class RoleTableSeeder extends Seeder
 
         $roles = [
             [
-                'name' => 'Root',
+                'name' => 'root',
                 'display_name' => '创始人',
                 'description' => '网站全部权限',
                 'all' => true,
@@ -39,7 +39,7 @@ class RoleTableSeeder extends Seeder
                 'updated_at' => Carbon::now()
             ],
             [
-                'name' => 'Administrator',
+                'name' => 'admin',
                 'display_name' => '管理员',
                 'description' => '网站大部分权限',
                 'all' => true,
@@ -48,7 +48,7 @@ class RoleTableSeeder extends Seeder
                 'updated_at' => Carbon::now()
             ],
             [
-                'name' => 'Role',
+                'name' => 'role',
                 'display_name' => '角色管理',
                 'description' => '角色管理',
                 'all' => false,
@@ -57,7 +57,7 @@ class RoleTableSeeder extends Seeder
                 'updated_at' => Carbon::now()
             ],
             [
-                'name' => 'User',
+                'name' => 'user',
                 'display_name' => '用户管理',
                 'description' => '用户管理',
                 'all' => false,

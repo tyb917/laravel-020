@@ -35,7 +35,7 @@
                                 </label>
                                 <div class="col-md-10">
                                     {{ Form::text('name', $role->name, ['class' => 'form-control', 'autocomplete' => 'off']) }}
-                                    <span class="help-block"> 只能由小写字母组成且首字母必须大写。 </span>
+                                    <span class="help-block"> 只能由小写字母组成。 </span>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -62,7 +62,7 @@
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-10">
-                                    {{ Form::select('associated-permissions', ['all' => '全部', 'custom' => '自定义'], 'all',['class' => 'form-control', 'id' => 'associated-permissions']) }}
+                                    {{ Form::select('associated-permissions', ['all' => '全部', 'custom' => '自定义'], ($role->all) ? 'all' : 'custom',['class' => 'form-control', 'id' => 'associated-permissions']) }}
                                     <div id="available-permissions" class="margin-top-20 hidden">
                                         <div class="row">
                                             <div class="col-xs-12">

@@ -25,7 +25,7 @@ class RoleStoreOrUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|alpha_dash_upr_first',
+            'name' => 'required|alpha',
             'display_name' => 'required',
             'description' => 'required',
             'sort' => 'required',

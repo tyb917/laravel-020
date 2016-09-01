@@ -178,10 +178,6 @@ class RoleRepository implements RoleInterface
             throw new GeneralException('不能删除系统默认角色！');
         }
 
-        if ($role->users()->count() > 0) {
-            throw new GeneralException('该角色下还有用户！');
-        }
-
 		DB::transaction(function() use ($role) {
 			//Detach all associated roles
 			$role->permissions()->sync([]);

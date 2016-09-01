@@ -34,7 +34,7 @@
                                 </label>
                                 <div class="col-md-10">
                                     {{ Form::text('name', null, ['class' => 'form-control', 'autocomplete' => 'off']) }}
-                                    <span class="help-block"> 只能由小写字母组成且首字母必须大写。 </span>
+                                    <span class="help-block"> 只能由小写字母组成。 </span>
                                 </div>
                             </div>
                             <div class="form-group">
