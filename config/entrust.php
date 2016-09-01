@@ -103,5 +103,14 @@ return [
          */
         'role_must_contain_permission' => true
     ],
+    /*
+     * Configuration for users
+     */
+    'users' => [
+        /*
+         * Whether a role must contain a permission or can be used standalone as a label
+         */
+        'user_must_contain_role' => true
+    ],
 
 ];

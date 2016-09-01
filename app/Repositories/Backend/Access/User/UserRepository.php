@@ -2,9 +2,10 @@
 
 namespace App\Repositories\Backend\Access\User;
 
+use App\Exceptions\GeneralException;
 use App\Models\Access\User\User;
-use Illuminate\Support\Facades\DB;
 use App\Repositories\Backend\Access\Role\RoleInterface;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Class EloquentUserRepository
@@ -38,12 +39,11 @@ class UserRepository implements UserInterface
      * @return mixed
      */
     public function getForDataTable()
-    {
-        return User::select('*','users.name as name','users.id as id')
-            ->join("role_user",'role_user.user_id','=','users.id')
-            ->join("roles",'roles.id','=','role_user.role_id')
-            ->where('roles.id','<',3)
-            ->get();
+    {   
+        return User::leftJoin("role_user",'role_user.user_id','=','users.id')
+            ->whereNotNull('role_user.user_id')
+            ->get()
+            ->unique();
     }
 
     /**
@@ -53,28 +53,43 @@ class UserRepository implements UserInterface
      * @throws UserNeedsRolesException
      * @return bool
      */
-    public function create($input, $users)
+    public function create($input)
     {
-        $user = $this->createUserStub($input);
+        $user = User::where('name', $input['name'])->first();
+
+        if (!$user) throw new GeneralException('用户不存在！');
+
+        if ($user->id == 1) {
+            throw new GeneralException('创始人不允许更改！');
+        }
+        
+        $all = $input['role_user'] == 'all' ? true : false;
+
+        if (! isset($input['roles'])) $input['roles'] = [];
+
+        $roles = [];
+        if (! $all) {
+            if (config('entrust.users.user_must_contain_role') && count($input['roles']) == 0) {
+                throw new GeneralException('您必须为管理员至少选择一个角色！');
+            }
+            if (is_array($input['roles']) && count($input['roles'])) {
+                foreach ($input['roles'] as $role) {
+                    if (is_numeric($role)) {
+                        array_push($roles, $role);
+                    }
+                }
+            }
+        } else {
+            $roles[] = 2;
+        }
 
 		DB::transaction(function() use ($user, $roles) {
-			if ($user->save()) {
-				//User Created, Validate Roles
-				$this->validateRoleAmount($user, $roles['assignees_roles']);
-
-				//Attach new roles
-				$user->attachRoles($roles['assignees_roles']);
-
-				//Send confirmation email if requested
-				if (isset($input['confirmation_email']) && $user->confirmed == 0) {
-					$this->user->sendConfirmationEmail($user->id);
-				}
-
-				event(new UserCreated($user));
-				return true;
-			}
-
-        	throw new GeneralException(trans('exceptions.backend.access.users.create_error'));
+            try {
+                $user->attachRoles($roles);
+                return true;
+            } catch (\Exception $e) {
+                throw new GeneralException('管理员创建失败！');
+            }
 		});
     }
 
@@ -85,26 +100,44 @@ class UserRepository implements UserInterface
      * @return bool
      * @throws GeneralException
      */
-    public function update(User $user, $input, $roles)
+    public function update($input)
     {
-        $this->checkUserByEmail($input, $user);
+        $user = User::where('name', $input['name'])->first();
 
-		DB::transaction(function() use ($user, $input, $roles) {
-			if ($user->update($input)) {
-				//For whatever reason this just wont work in the above call, so a second is needed for now
-				$user->status = isset($input['status']) ? 1 : 0;
-				$user->confirmed = isset($input['confirmed']) ? 1 : 0;
-				$user->save();
+        if (!$user) throw new GeneralException('用户不存在！');
 
-				$this->checkUserRolesCount($roles);
-				$this->flushRoles($roles, $user);
+        if ($user->id == 1) {
+            throw new GeneralException('创始人不允许更改！');
+        }
+        
+        $all = $input['role_user'] == 'all' ? true : false;
 
-				event(new UserUpdated($user));
-				return true;
-			}
+        if (! isset($input['roles'])) $input['roles'] = [];
 
-        	throw new GeneralException(trans('exceptions.backend.access.users.update_error'));
-		});
+        $roles = [];
+        if (! $all) {
+            if (config('entrust.users.user_must_contain_role') && count($input['roles']) == 0) {
+                throw new GeneralException('您必须为管理员至少选择一个角色！');
+            }
+            if (is_array($input['roles']) && count($input['roles'])) {
+                foreach ($input['roles'] as $role) {
+                    if (is_numeric($role)) {
+                        array_push($roles, $role);
+                    }
+                }
+            }
+        } else {
+            $roles[] = 2;
+        }
+
+        DB::transaction(function() use ($user, $roles) {
+            try {
+                $this->flushRoles($roles, $user);
+                return true;
+            } catch (\Exception $e) {
+                throw new GeneralException('管理员编辑失败！');
+            }
+        });
     }
 
     /**
@@ -130,18 +163,19 @@ class UserRepository implements UserInterface
      * @throws GeneralException
      * @return bool
      */
-    public function destroy(User $user)
+    public function destroy($id)
     {
-        if (access()->id() == $user->id) {
-            throw new GeneralException(trans('exceptions.backend.access.users.cant_delete_self'));
+        //Would be stupid to delete the administrator role
+        if ($id == 1) { //id is 1 because of the seeder
+            throw new GeneralException('创始人不允许删除！');
         }
 
-        if ($user->delete()) {
-            event(new UserDeleted($user));
-            return true;
+        if (auth()->id() == $id) {
+            throw new GeneralException('不能删除自己！');
         }
-
-        throw new GeneralException(trans('exceptions.backend.access.users.delete_error'));
+        $user = User::with('roles')->find($id);
+        $user->detachRoles($user->roles);
+        return true;
     }
 
     /**
@@ -357,7 +391,7 @@ class UserRepository implements UserInterface
     {
         //Flush roles out, then add array of new ones
         $user->detachRoles($user->roles);
-        $user->attachRoles($roles['assignees_roles']);
+        $user->attachRoles($roles);
     }
 
     /**
@@ -368,7 +402,7 @@ class UserRepository implements UserInterface
     {
         //User Updated, Update Roles
         //Validate that there's at least one role chosen
-        if (count($roles['assignees_roles']) == 0) {
+        if (count($roles['role_user']) == 0) {
             throw new GeneralException(trans('exceptions.backend.access.users.role_needed'));
         }
     }
@@ -388,4 +422,5 @@ class UserRepository implements UserInterface
         $user->confirmed         = isset($input['confirmed']) ? 1 : 0;
         return $user;
     }
+
 }

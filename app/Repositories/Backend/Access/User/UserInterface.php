@@ -23,7 +23,7 @@ interface UserInterface
      * @param $roles
      * @return mixed
      */
-    public function create($input, $roles);
+    public function create($input);
 
     /**
      * @param User $user
@@ -31,13 +31,13 @@ interface UserInterface
      * @param $roles
      * @return mixed
      */
-    public function update(User $user, $input, $roles);
+    public function update($input);
 
     /**
      * @param  User $user
      * @return mixed
      */
-    public function destroy(User $user);
+    public function destroy($id);
 
     /**
      * @param  User $user

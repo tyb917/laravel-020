@@ -392,12 +392,16 @@
                         <li class="divider">
                         </li>
                         <li>
-                            <a href="extra_lock.html">
-                            <i class="icon-lock"></i> Lock Screen </a>
+                            <a href="extra_lock.html"> Lock Screen </a>
                         </li>
                         <li>
-                            <a href="login.html">
-                            <i class="icon-key"></i> Log Out </a>
+                            <a href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                <i class="icon-lock"></i>
+                                退出
+                            </a>
+                            <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                                {{ csrf_field() }}
+                            </form>
                         </li>
                     </ul>
                 </li>

@@ -44,7 +44,7 @@
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-10">
-                                    {{ Form::select('associated-roles', ['all' => '超级管理员', 'custom' => '普通管理员'], 'custom',['class' => 'form-control select2', 'id' => 'associated-roles']) }}
+                                    {{ Form::select('role_user', ['all' => '超级管理员', 'custom' => '普通管理员'], 'custom',['class' => 'form-control select2', 'id' => 'role-user']) }}
                                     <div id="available-roles" class="margin-top-20 hidden">
                                         <div class="row">
                                             <div class="col-xs-12">
@@ -77,7 +77,7 @@
     <script type="text/javascript">
         $(function(){
 
-            var associated = $("select[name='associated-roles']");
+            var associated = $("select[name='role_user']");
             var associated_container = $("#available-roles");
 
             if (associated.val() == "custom")

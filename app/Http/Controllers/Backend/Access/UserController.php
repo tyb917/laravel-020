@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend\Access;
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
 use App\Http\Requests\Backend\Access\User\UserRequest;
+use App\Http\Requests\Backend\Access\User\UserStoreOrUpdateRequest;
 use App\Models\Access\User\User;
 use App\Repositories\Backend\Access\Permission\PermissionInterface;
 use App\Repositories\Backend\Access\Role\RoleInterface;
@@ -81,9 +82,10 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UserStoreOrUpdateRequest $request)
     {
-        //
+        $this->users->create($request->all());
+        return redirect()->route('admin.access.user.index')->withFlashSuccess('管理员创建成功');
     }
 
     /**
@@ -108,7 +110,7 @@ class UserController extends Controller
         return view('backend.access.user.edit')
             ->withUser($user)
             ->withRoles($this->roles->getAllRoles())
-            ->withUserRole($user->roles->pluck('id')->all());
+            ->withRoleUser($user->roles->pluck('id')->all());
     }
 
     /**
@@ -118,9 +120,11 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UserStoreOrUpdateRequest $request)
     {
-        //
+        $this->users->update($request->all());
+        return redirect()->route('admin.access.user.index')->withFlashSuccess('更新成功');
+        
     }
 
     /**
@@ -131,6 +135,7 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->users->destroy($id);
+        return redirect()->back()->withFlashSuccess('删除成功');
     }
 }

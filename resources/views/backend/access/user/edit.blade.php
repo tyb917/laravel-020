@@ -45,45 +45,26 @@
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-10">
-                                    <div class="row">
-                                        <div class="col-xs-12">
-                                            <div class="icheck-inline">
-                                                @foreach ($roles as $role)
-                                                    <label for="role_{{ $role->id }}">
-                                                        <input type="checkbox" name="permissions[]" value="{{ $role->id }}" id="role_{{ $role->id }}" {{in_array($role->id, $user_role) ? 'checked' : ""}}>
-                                                        {{ $role->display_name }}
-                                                    </label>
-                                                @endforeach
+                                    {{ Form::select('role_user', ['all' => '超级管理员', 'custom' => '普通管理员'], in_array(2, $role_user) ? 'all' : 'custom',['class' => 'form-control select2', 'id' => 'role-user']) }}
+                                    <div id="available-roles" class="margin-top-20 hidden">
+                                        <div class="row">
+                                            <div class="col-xs-12">
+                                                <div class="icheck-inline">
+                                                    @foreach ($roles as $role)
+                                                        @if ($role->id < 3)
+                                                            @continue
+                                                        @endif
+                                                        <label for="role_{{ $role->id }}">
+                                                            <input type="checkbox" name="roles[]" value="{{ $role->id }}" id="role_{{ $role->id }}" {{in_array($role->id, $role_user) ? 'checked' : ''}}>
+                                                            {{ $role->display_name }}
+                                                        </label>
+                                                    @endforeach
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            {{-- <div class="form-group">
-                                <label class="col-md-2 control-label">
-                                    相关权限
-                                    <span class="required">*</span>
-                                </label>
-                                <div class="col-md-10">
-                                    {{ Form::select('associated-permissions', ['all' => '全部', 'custom' => '自定义'], 'all',['class' => 'form-control', 'id' => 'associated-permissions']) }}
-                                    <div id="available-permissions" class="margin-top-20 hidden">
-                                        <div class="row">
-                                            <div class="col-xs-12">
-                                                @if ($permissions->count())
-                                                    @foreach ($permissions as $perm)
-                                                        <label class="checkbox-inline" for="perm_{{ $perm->id }}">
-                                                            <input type="checkbox" name="permissions[]" value="{{ $perm->id }}" id="perm_{{ $perm->id }}" {{in_array($perm->id, $role_permissions) ? 'checked' : ""}}>
-                                                            {{ $perm->display_name }}
-                                                        </label>
-                                                    @endforeach
-                                                @else
-                                                    <p>有没有可用的权限。</p>
-                                                @endif
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> --}}
                         </div>
                     </div>
                 </div>
@@ -96,6 +77,22 @@
 @section('js')
     <script type="text/javascript">
         $(function(){
+
+            var associated = $("select[name='role_user']");
+            var associated_container = $("#available-roles");
+
+            if (associated.val() == "custom")
+                associated_container.removeClass('hidden');
+            else
+                associated_container.addClass('hidden');
+
+            associated.change(function() {
+                if ($(this).val() == "custom")
+                    associated_container.removeClass('hidden');
+                else
+                    associated_container.addClass('hidden');
+            });
+
             $('input').iCheck({
                 checkboxClass: 'icheckbox_flat-green'
             });
