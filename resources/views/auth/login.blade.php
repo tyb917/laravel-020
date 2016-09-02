@@ -10,15 +10,15 @@
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
                         {{ csrf_field() }}
 
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">邮箱</label>
+                        <div class="form-group{{ $errors->has('mobile') ? ' has-error' : '' }}">
+                            <label for="mobile" class="col-md-4 control-label">手机</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" autofocus>
+                                <input id="mobile" type="mobile" class="form-control" name="mobile" value="{{ old('mobile') }}" autofocus>
 
-                                @if ($errors->has('email'))
+                                @if ($errors->has('mobile'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
+                                        <strong>{{ $errors->first('mobile') }}</strong>
                                     </span>
                                 @endif
                             </div>

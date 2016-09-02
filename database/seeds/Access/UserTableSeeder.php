@@ -30,6 +30,7 @@ class UserTableSeeder extends Seeder
         $users = [
             [
                 'name'              => 'admin',
+                'mobile'             => '15960838225',
                 'email'             => '461670819@qq.com',
                 'password'          => bcrypt('cywan917'),
                 'created_at'        => Carbon::now(),
@@ -37,6 +38,7 @@ class UserTableSeeder extends Seeder
             ],
             [
                 'name'              => 'user',
+                'mobile'             => '13113113111',
                 'email'             => 'user@user.com',
                 'password'          => bcrypt('cywan917'),
                 'created_at'        => Carbon::now(),
