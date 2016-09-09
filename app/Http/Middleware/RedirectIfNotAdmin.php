@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 
-class RedirectIfAuthenticated
+class RedirectIfNotAdmin
 {
     /**
      * Handle an incoming request.
@@ -15,12 +15,10 @@ class RedirectIfAuthenticated
      * @param  string|null  $guard
      * @return mixed
      */
-    public function handle($request, Closure $next, $guard = null)
+    public function handle($request, Closure $next, $guard = 'admin')
     {
-        if (Auth::guard($guard)->check()) {
-            // 根据不同 guard 跳转到不同的页面
-            $url = $guard ? 'admin/dashboard':'/dashboard';
-            return redirect($url);
+        if (Auth::guard($guard)->guest()) {
+            return redirect()->guest('admin/login');
         }
         return $next($request);
     }

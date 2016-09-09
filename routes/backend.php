@@ -5,7 +5,15 @@
  * Namespaces indicate folder structure
  * Admin middleware groups web, auth, and routeNeedsPermission
  */
-Route::group(['namespace' => 'Backend', 'as' => 'admin.', 'middleware' => ['role:root|admin','permission:view-backend']], function () {
+Route::group(['namespace' => 'Backend', 'as' => 'admin.'], function () {
+    Route::group(['namespace' => 'Auth', 'as' => 'auth.'], function () {
+        Route::get('login','LoginController@showLoginForm')->name('login');
+        Route::post('login','LoginController@login');
+        Route::post('logout','LoginController@logout')->name('logout');
+    });
+});
+
+Route::group(['namespace' => 'Backend', 'as' => 'admin.', 'middleware' => 'admin'], function () {
     /**
      * These routes need view-backend permission
      * (good if you want to allow more than one group in the backend,

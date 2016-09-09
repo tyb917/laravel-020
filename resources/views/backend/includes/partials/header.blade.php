@@ -395,11 +395,11 @@
                             <a href="extra_lock.html"> Lock Screen </a>
                         </li>
                         <li>
-                            <a href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            <a href="{{ route('admin.auth.logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                 <i class="icon-lock"></i>
                                 退出
                             </a>
-                            <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                            <form id="logout-form" action="{{ route('admin.auth.logout') }}" method="POST" style="display: none;">
                                 {{ csrf_field() }}
                             </form>
                         </li>
