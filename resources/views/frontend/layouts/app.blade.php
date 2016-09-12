@@ -77,7 +77,10 @@
 
 @yield('content')
 
-<!-- Scripts -->
+<!-- JavaScripts -->
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="{{asset('js/vendor/jquery/jquery-2.2.4.min.js')}}"><\/script>')</script>
 <script src="/js/app.js"></script>
+@yield('js')
 </body>
 </html>

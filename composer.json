@@ -17,7 +17,9 @@
         "guzzlehttp/guzzle": "^6.2",
         "zizaco/entrust": "5.2.x-dev",
         "hieu-le/active": "^3.3",
-        "davejamesmiller/laravel-breadcrumbs": "^3.0"
+        "davejamesmiller/laravel-breadcrumbs": "^3.0",
+        "toplan/laravel-sms": "2.5.*",
+        "germey/geetest": "^1.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

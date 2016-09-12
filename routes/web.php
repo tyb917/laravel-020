@@ -31,3 +31,5 @@ Route::group(['namespace' => 'Frontend'], function () {
 	 */
     Route::get('/', 'IndexController@index')->name('frontend.index');
 });
+
+Route::get('ajax/geetest','Controller@getGeetest');

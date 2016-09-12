@@ -35,6 +35,17 @@ class AppServiceProvider extends ServiceProvider
             }
             return true;
         });
+
+        /**
+         * 自定义验证规则(手机)
+         */
+        Validator::extend('is_mobile', function ($attribute, $value, $parameters)
+        {
+            if (!preg_match('/^(\+?0?86\-?)?((13\d|14[57]|15[^4,\D]|17[678]|18\d)\d{8}|170[059]\d{7})$/',$value)) {
+                return false;
+            }
+            return true;
+        });
     }
 
     /**

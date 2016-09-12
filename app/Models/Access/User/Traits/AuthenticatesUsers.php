@@ -158,6 +158,6 @@ trait AuthenticatesUsers
      */
     protected function guard()
     {
-        return Auth::guard();
+        return Auth::guard('web');
     }
 }

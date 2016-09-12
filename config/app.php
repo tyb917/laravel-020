@@ -206,7 +206,15 @@ return [
          * 导航条插件
          */
         DaveJamesMiller\Breadcrumbs\ServiceProvider::class,
-
+        /**
+         * 短信接口插件
+         */
+        Toplan\PhpSms\PhpSmsServiceProvider::class,
+        Toplan\Sms\SmsManagerServiceProvider::class,
+        /**
+         * 极验验证
+         */
+        Germey\Geetest\GeetestServiceProvider::class
     ],
 
     /*
@@ -280,6 +288,15 @@ return [
          * 导航条插件
          */
         'Breadcrumbs' => DaveJamesMiller\Breadcrumbs\Facade::class,
+        /**
+         * 短信接口
+         */
+        'PhpSms' => Toplan\PhpSms\Facades\Sms::class,
+        'SmsManager' => Toplan\Sms\Facades\SmsManager::class,
+        /**
+         * 极验验证
+         */
+        'Geetest' => Germey\Geetest\Geetest::class,
 
     ],
 
