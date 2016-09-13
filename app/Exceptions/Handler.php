@@ -65,7 +65,6 @@ class Handler extends ExceptionHandler
             return redirect()->route('admin.access.user.edit', $e->userID())->withInput()->withFlashDanger($e->validationErrors());
         }
         
-        \Inspector::renderException($e);
         return parent::render($request, $e);
     }
 

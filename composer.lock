@@ -4,9 +4,63 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "2bb6b7d724fb307598e392e0e1920099",
-    "content-hash": "98db711a8c30613922d9e3d79a5d970b",
+    "hash": "d825b08f8fef65869f920c4ec82c156f",
+    "content-hash": "23e3d0495d12c3c01e2840806f7fe64b",
     "packages": [
+        {
+            "name": "barryvdh/laravel-debugbar",
+            "version": "V2.2.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/barryvdh/laravel-debugbar.git",
+                "reference": "ecd1ce5c4a827e2f6a8fb41bcf67713beb1c1cbd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://packagist.phpcomposer.com/files/barryvdh/laravel-debugbar/ecd1ce5c4a827e2f6a8fb41bcf67713beb1c1cbd.zip",
+                "reference": "ecd1ce5c4a827e2f6a8fb41bcf67713beb1c1cbd",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "5.1.*|5.2.*|5.3.*",
+                "maximebf/debugbar": "~1.11.0|~1.12.0",
+                "php": ">=5.5.9",
+                "symfony/finder": "~2.7|~3.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.2-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Barryvdh\\Debugbar\\": "src/"
+                },
+                "files": [
+                    "src/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Barry vd. Heuvel",
+                    "email": "barryvdh@gmail.com"
+                }
+            ],
+            "description": "PHP Debugbar integration for Laravel",
+            "keywords": [
+                "debug",
+                "debugbar",
+                "laravel",
+                "profiler",
+                "webprofiler"
+            ],
+            "time": "2016-07-29 15:00:36"
+        },
         {
             "name": "classpreloader/classpreloader",
             "version": "3.0.0",
@@ -1433,79 +1487,6 @@
             "time": "2016-07-26 19:42:03"
         },
         {
-            "name": "lsrur/inspector",
-            "version": "v1.0.5",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/lsrur/inspector.git",
-                "reference": "37e3643765a68923ff99e9d14bd76ea172332266"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://packagist.phpcomposer.com/files/lsrur/inspector/37e3643765a68923ff99e9d14bd76ea172332266.zip",
-                "reference": "37e3643765a68923ff99e9d14bd76ea172332266",
-                "shasum": ""
-            },
-            "require": {
-                "lsrur/toolbelt": "0.3.*"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Lsrur\\Inspector\\": "src/"
-                },
-                "files": [
-                    "src/helpers.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "description": "Laravel Inspector, debugging and profiling tools for Web Artisans",
-            "keywords": [
-                "debug",
-                "exceptions",
-                "laravel",
-                "profiler"
-            ],
-            "time": "2016-08-11 22:31:03"
-        },
-        {
-            "name": "lsrur/toolbelt",
-            "version": "0.3.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/lsrur/toolbelt.git",
-                "reference": "b37a58c073bd4b8e2c83fc6992c90d26ccc0ca5d"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://packagist.phpcomposer.com/files/lsrur/toolbelt/b37a58c073bd4b8e2c83fc6992c90d26ccc0ca5d.zip",
-                "reference": "b37a58c073bd4b8e2c83fc6992c90d26ccc0ca5d",
-                "shasum": ""
-            },
-            "type": "library",
-            "autoload": {
-                "files": [
-                    "src/Toolbelt.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "description": "Set of PHP helper functions wrapped for Laravel.",
-            "keywords": [
-                "functions",
-                "helpers",
-                "laravel",
-                "php",
-                "tools"
-            ],
-            "time": "2016-08-11 22:11:45"
-        },
-        {
             "name": "maatwebsite/excel",
             "version": "v2.0.9",
             "source": {
@@ -1571,6 +1552,67 @@
                 "laravel"
             ],
             "time": "2015-10-26 10:15:37"
+        },
+        {
+            "name": "maximebf/debugbar",
+            "version": "v1.12.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/maximebf/php-debugbar.git",
+                "reference": "e634fbd32cd6bc3fa0e8c972b52d4bf49bab3988"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://packagist.phpcomposer.com/files/maximebf/php-debugbar/e634fbd32cd6bc3fa0e8c972b52d4bf49bab3988.zip",
+                "reference": "e634fbd32cd6bc3fa0e8c972b52d4bf49bab3988",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0",
+                "psr/log": "^1.0",
+                "symfony/var-dumper": "^2.6|^3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.0|^5.0"
+            },
+            "suggest": {
+                "kriswallsmith/assetic": "The best way to manage assets",
+                "monolog/monolog": "Log using Monolog",
+                "predis/predis": "Redis storage"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.12-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "DebugBar\\": "src/DebugBar/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Maxime Bouroumeau-Fuseau",
+                    "email": "maxime.bouroumeau@gmail.com",
+                    "homepage": "http://maximebf.com"
+                },
+                {
+                    "name": "Barry vd. Heuvel",
+                    "email": "barryvdh@gmail.com"
+                }
+            ],
+            "description": "Debug bar in the browser for php application",
+            "homepage": "https://github.com/maximebf/php-debugbar",
+            "keywords": [
+                "debug",
+                "debugbar"
+            ],
+            "time": "2016-05-15 13:11:34"
         },
         {
             "name": "monolog/monolog",
@@ -3804,6 +3846,79 @@
                 "test"
             ],
             "time": "2015-05-11 14:41:42"
+        },
+        {
+            "name": "lsrur/inspector",
+            "version": "v1.0.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/lsrur/inspector.git",
+                "reference": "37e3643765a68923ff99e9d14bd76ea172332266"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://packagist.phpcomposer.com/files/lsrur/inspector/37e3643765a68923ff99e9d14bd76ea172332266.zip",
+                "reference": "37e3643765a68923ff99e9d14bd76ea172332266",
+                "shasum": ""
+            },
+            "require": {
+                "lsrur/toolbelt": "0.3.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Lsrur\\Inspector\\": "src/"
+                },
+                "files": [
+                    "src/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Laravel Inspector, debugging and profiling tools for Web Artisans",
+            "keywords": [
+                "debug",
+                "exceptions",
+                "laravel",
+                "profiler"
+            ],
+            "time": "2016-08-11 22:31:03"
+        },
+        {
+            "name": "lsrur/toolbelt",
+            "version": "0.3.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/lsrur/toolbelt.git",
+                "reference": "b37a58c073bd4b8e2c83fc6992c90d26ccc0ca5d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://packagist.phpcomposer.com/files/lsrur/toolbelt/b37a58c073bd4b8e2c83fc6992c90d26ccc0ca5d.zip",
+                "reference": "b37a58c073bd4b8e2c83fc6992c90d26ccc0ca5d",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "src/Toolbelt.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Set of PHP helper functions wrapped for Laravel.",
+            "keywords": [
+                "functions",
+                "helpers",
+                "laravel",
+                "php",
+                "tools"
+            ],
+            "time": "2016-08-11 22:11:45"
         },
         {
             "name": "mockery/mockery",

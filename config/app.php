@@ -181,7 +181,7 @@ return [
          * 第三方组件
          * 调试分析工具
          */
-        Lsrur\Inspector\InspectorServiceProvider::class,
+        Barryvdh\Debugbar\ServiceProvider::class,
         /**
          * Html工具
          */
@@ -269,7 +269,7 @@ return [
          * 第三方组件
          * 调试分析工具
          */
-        'Inspector' => Lsrur\Inspector\Facade\Inspector::class,
+        'Debugbar' => Barryvdh\Debugbar\Facade::class,
         /**
          * Html工具
          * Form工具

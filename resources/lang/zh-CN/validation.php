@@ -78,6 +78,7 @@ return [
     'timezone'             => ':attribute 必须是一个合法的时区值。',
     'unique'               => ':attribute 已经存在。',
     'url'                  => ':attribute 格式不正确。',
+    'verify_code'          => ':attribute 不正确。',
 
     /*
     |--------------------------------------------------------------------------
@@ -109,13 +110,15 @@ return [
 
     'attributes' => [
         /*权限验证*/
-        'name' => '角色名称',
+        'name' => '名称',
+        'username' => '账户',
         'email' => '邮箱',
         'mobile' => '手机',
         'password' => '密码',
         'display_name' => '显示名称',
-        'description' => '角色描述 ',
+        'description' => '角色描述',
         'sort' => '排序',
+        'verifyCode' => '验证码',
     ],
 
 ];

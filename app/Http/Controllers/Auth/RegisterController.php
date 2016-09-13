@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Models\Access\User\User;
-use Validator;
 use App\Http\Controllers\Controller;
+use App\Models\Access\User\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use SmsManager;
+use Validator;
 
 class RegisterController extends Controller
 {
@@ -50,9 +51,15 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
-            'mobile' => 'required|is_mobile|unique:users',
+            'mobile' => 'required|confirm_mobile_not_change|confirm_rule:check_mobile_unique',
+            'verifyCode' => 'required|verify_code',
             'password' => 'required|min:6|confirmed',
         ]);
+        // if ($validator->fails()) {
+        //     //验证失败后建议清空存储的发送状态，防止用户重复试错
+        //     SmsManager::forgetState();
+        //     return redirect()->back()->withErrors($validator);
+        // }
     }
 
     /**
@@ -66,6 +73,7 @@ class RegisterController extends Controller
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'mobile' => $data['mobile'],
             'password' => bcrypt($data['password']),
         ]);
     }

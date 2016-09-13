@@ -71,13 +71,23 @@ trait AuthenticatesUsers
     }
 
     /**
-     * Get the needed authorization credentials from the request.
+     * 自定义登录方式
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return array
+     * @return void
      */
     protected function credentials(Request $request)
     {
+        if (preg_match('/^((13\d|14[57]|15[^4,\D]|17[678]|18\d)\d{8}|170[059]\d{7})$/', $request->input('username'))) {
+            $this->username = 'mobile';
+        } elseif (filter_var($request->input('username'), FILTER_VALIDATE_EMAIL)) {
+            $this->username = 'email';
+        } else {
+            $this->username = 'name';
+        }
+        //merge合并数组
+        $request->merge([$this->username => $request->input('username')]);
+
         return $request->only($this->username(), 'password');
     }
 
@@ -110,7 +120,7 @@ trait AuthenticatesUsers
     }
 
     /**
-     * Get the failed login response instance.
+     * 登录失败
      *
      * @param \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -118,20 +128,20 @@ trait AuthenticatesUsers
     protected function sendFailedLoginResponse(Request $request)
     {
         return redirect()->back()
-            ->withInput($request->only($this->username(), 'remember'))
+            ->withInput($request->only('username', 'remember'))
             ->withErrors([
-                $this->username() => Lang::get('auth.failed'),
+                'username' => Lang::get('auth.failed'),
             ]);
     }
 
     /**
-     * Get the login username to be used by the controller.
+     * 自定义登录校验的字段
      *
      * @return string
      */
     public function username()
     {
-        return 'email';
+        return $this->username;
     }
 
     /**

@@ -164,6 +164,10 @@ elixir(function(mix) {
         'backend/admin/layout/themes/light2.scss',
     ], 'resources/assets/css/backend/light2.css')
 
+    .sass([
+        'backend/pages/login.scss'
+    ], 'public/css/backend/login.css')
+
     .styles([
         'backend/plugin.css',
         'backend/light2.css',

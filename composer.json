@@ -10,7 +10,6 @@
         "laravel/socialite": "^2.0",
         "laravel/passport": "^0.2.4",
         "pusher/pusher-php-server": "~2.0",
-        "lsrur/inspector": "^1.0",
         "predis/predis": "^1.1",
         "laravelcollective/html": "^5.2",
         "yajra/laravel-datatables-oracle": "^6.17",
@@ -19,7 +18,8 @@
         "hieu-le/active": "^3.3",
         "davejamesmiller/laravel-breadcrumbs": "^3.0",
         "toplan/laravel-sms": "2.5.*",
-        "germey/geetest": "^1.0"
+        "germey/geetest": "^1.0",
+        "barryvdh/laravel-debugbar": "^2.2"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

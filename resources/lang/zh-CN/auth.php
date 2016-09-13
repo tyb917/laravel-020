@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'failed' => '手机或密码错误！',
+    'failed' => '账户或密码错误！',
     'throttle' => '错误登录次数太多，请过 :seconds 后重试。',
 
 ];

@@ -18,7 +18,7 @@ return [
      * 'Luosimao', 'YunTongXun', 'YunPian', 'SubMail', 'Ucpaas', 'JuHe', 'Alidayu', 'Log'
      */
     'scheme' => [
-        'Log',
+        'ChangZhuo',
     ],
 
     /*
@@ -187,5 +187,9 @@ return [
             //SMS_KEY
             'smsKey'  => 'your SMS_KEY',
         ],
+        'ChangZhuo' => [
+            'account' => 'hangyuncheng',
+            'password' => '152528',
+        ]
     ],
 ];

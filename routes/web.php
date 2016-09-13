@@ -18,12 +18,14 @@
  * 登录退出路由
  */
 Auth::routes();
+//技验验证
+Route::get('ajax/geetest','Controller@getGeetest');
 
 Route::group(['namespace' => 'Frontend'], function () {
 	/**
 	 * 需要登录页面
 	 */
-	Route::group(['namespace' => 'User'], function() {
+	Route::group(['namespace' => 'User', 'middleware' => 'auth'], function() {
     	Route::get('/dashboard', 'DashboardController@index')->name('frontend.user.dashboard');
     });
 	/**
@@ -31,5 +33,3 @@ Route::group(['namespace' => 'Frontend'], function () {
 	 */
     Route::get('/', 'IndexController@index')->name('frontend.index');
 });
-
-Route::get('ajax/geetest','Controller@getGeetest');

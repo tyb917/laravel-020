@@ -100,7 +100,7 @@ return [
     |
     */
     'verifySmsContent' => function ($code, $minutes, $input) {
-        return '【your app signature】亲爱的用户，您的验证码是' . $code . '。有效期为' . $minutes . '分钟，请尽快验证。';
+        return '您的验证码是：' . $code . '，请不要把验证码泄露给其他人。【航运城】';
     },
 
     /*

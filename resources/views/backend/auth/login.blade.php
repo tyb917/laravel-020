@@ -1,68 +1,105 @@
-@extends('backend.layouts.app')
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="_token" content="{{ csrf_token() }}" />
+    <title>@yield('title', 'O2Ousername管理中心')</title>
+    <!-- Meta -->
+    <meta name="description" content="@yield('meta_description', 'O2Ousername管理中心')">
+    <meta name="author" content="@yield('meta_author', 'btan')">
+    @yield('meta')
 
-@section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">登录</div>
-                <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ route('admin.auth.login') }}">
-                        {{ csrf_field() }}
+    <link rel="shortcut icon" href="favicon.ico"/>
+    <!-- Styles -->
+    @yield('before-styles-end')
+    {!! Html::style(elixir('css/backend/default.css'),['id'=>'style_color']) !!}
+    {!! Html::style(elixir('css/backend/components.css'),['id'=>'style_components']) !!}
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/backend/login.css') }}">
+    @yield('after-styles-end')
+    @yield('css')
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body class=" login">
+    <div class="logo">
+        <a href="/">
+            <img src="{{ asset('images/logo-big.png') }}" alt=""> 
+        </a>
+    </div>
+    <div class="content">
+        <form class="login-form" role="form" method="POST" action="{{ route('admin.auth.login') }}">
+            {{ csrf_field() }}
+            <h3 class="form-title">登录</h3>
+            <div class="alert alert-danger{{ $errors->has('username') || $errors->has('password') ? ' display-show' : ' display-hide' }}">
+                <button type="button" class="close" data-dismiss="alert"></button>
+                <ul>
+                    @if ($errors->first('username')) 
+                        <li>{{ $errors->first('username') }}</li> 
+                    @endif
 
-                        <div class="form-group{{ $errors->has('mobile') ? ' has-error' : '' }}">
-                            <label for="mobile" class="col-md-4 control-label">手机</label>
+                    @if ($errors->first('password')) 
+                        <li>{{ $errors->first('password') }}</li>
+                    @endif
+                </ul>
+            </div>
+            <div class="form-group">
+                <label for="username" class="control-label visible-ie8 visible-ie9">账户</label>
 
-                            <div class="col-md-6">
-                                <input id="mobile" type="mobile" class="form-control" name="mobile" value="{{ old('mobile') }}" autofocus>
-
-                                @if ($errors->has('mobile'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('mobile') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">密码</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password">
-
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="remember"> 记住我
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-8 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    登录
-                                </button>
-
-                                <a class="btn btn-link" href="{{ url('/password/reset') }}">
-                                    忘记密码？
-                                </a>
-                            </div>
-                        </div>
-                    </form>
+                <div class="input-icon">
+                    <i class="fa fa-user"></i>
+                    <input id="username" type="username" class="form-control" name="username" placeholder="手机号/会员名/邮箱" value="{{ old('username') }}" autofocus>
                 </div>
             </div>
-        </div>
+
+            <div class="form-group">
+                <label for="password" class="control-label visible-ie8 visible-ie9">密码</label>
+
+                <div class="input-icon">
+                    <i class="fa fa-lock"></i>
+                    <input id="password" type="password" class="form-control" name="password" placeholder="密码">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn green btn-block">
+                    登录
+                </button>
+            </div>
+
+            {{-- <div class="form-actions">
+                <label class="checkbox">
+                    <div class="checker">
+                        <span>
+                            <input type="checkbox" name="remember" value="">
+                        </span>
+                    </div> 记住我
+                </label>
+                <button type="submit" class="btn green pull-right">
+                    登录
+                </button>
+            </div>
+
+            <div class="forget-password">
+                <h4>忘记密码？</h4>
+                <p>请点击<a id="forget-password" href="{{ url('/password/reset') }}">链接</a>重置密码。</p>
+            </div> --}}
+        </form>
     </div>
-</div>
-@endsection
+
+    <!-- JavaScripts -->
+    <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="{{asset('js/vendor/jquery/jquery-2.2.4.min.js')}}"><\/script>')</script>
+    <script>
+        $(function(){
+            $('.close').click(function(){
+                $(this).parent('.display-show').hide();
+            })
+        })
+    </script>
+</body>
+</html>
