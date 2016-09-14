@@ -14,11 +14,9 @@
     <link rel="shortcut icon" href="favicon.ico"/>
     <!-- Styles -->
     @yield('before-styles-end')
-    {!! Html::style(elixir('css/backend/default.css'),['id'=>'style_color']) !!}
-    {!! Html::style(elixir('css/backend/components.css'),['id'=>'style_components']) !!}
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/backend/login.css') }}">
-    @yield('after-styles-end')
-    @yield('css')
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/vendor/bootstrap.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/vendor/font-awesome.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/login.css') }}">
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -32,49 +30,53 @@
         </a>
     </div>
     <div class="content">
-        <form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
+        <form class="register-form" role="form" method="POST" action="{{ url('/register') }}">
             {{ csrf_field() }}
             <h3>注册</h3>
             <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                 <label for="name" class="control-label visible-ie8 visible-ie9">用户名</label>
 
                 <div class="input-icon">
-                    <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" autofocus>
-
-                    @if ($errors->has('name'))
-                        <span class="help-block">
-                            <strong>{{ $errors->first('name') }}</strong>
-                        </span>
-                    @endif
+                    <i class="fa fa-user"></i>
+                    <input id="name" type="text" class="form-control" placeholder="用户名" name="name" value="{{ old('name') }}" autofocus>
                 </div>
+                @if ($errors->has('name'))
+                    <span class="help-block">
+                        {{ $errors->first('name') }}
+                    </span>
+                @endif
             </div>
 
             <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                 <label for="email" class="control-label visible-ie8 visible-ie9">邮箱</label>
 
                 <div class="input-icon">
-                    <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}">
-
-                    @if ($errors->has('email'))
-                        <span class="help-block">
-                            <strong>{{ $errors->first('email') }}</strong>
-                        </span>
-                    @endif
+                    <i class="fa fa-envelope"></i>
+                    <input id="email" type="email" class="form-control" placeholder="邮箱" name="email" value="{{ old('email') }}">
                 </div>
+                @if ($errors->has('email'))
+                    <span class="help-block">
+                        {{ $errors->first('email') }}
+                    </span>
+                @endif
             </div>
 
             <div class="form-group{{ $errors->has('mobile') ? ' has-error' : '' }}">
                 <label for="mobile" class="control-label visible-ie8 visible-ie9">手机</label>
 
                 <div class="input-icon">
-                    <input id="mobile" type="tel" class="form-control" name="mobile" value="{{ old('mobile') }}">
-                    
-                    @if ($errors->has('mobile'))
-                        <span class="help-block">
-                            <strong>{{ $errors->first('mobile') }}</strong>
-                        </span>
-                    @endif
+                    <i class="fa fa-mobile"></i>
+                    <input id="mobile" type="tel" class="form-control" placeholder="手机" name="mobile" value="{{ old('mobile') }}">
                 </div>
+
+                <span class="help-block">
+                    防止垃圾帐号(同一手机只能注册一个帐号)
+                </span>
+                @if ($errors->has('mobile'))
+                    <span class="help-block">
+                        {{ $errors->first('mobile') }}
+                    </span>
+                @endif
             </div>
 
             <div class="form-group">
@@ -83,18 +85,23 @@
 
             <div class="form-group{{ $errors->has('verifyCode') ? ' has-error' : '' }}">
                 <label for="verifyCode" class="control-label visible-ie8 visible-ie9">手机验证码</label>
-
-                <div class="input-icon">
-                    <input id="verifyCode" type="text" class="form-control" name="verifyCode">
-                    <span class="help-block">
-                        <a href="javascript:;" class="js-send">点击发送验证码</a>
-                    </span>
-
-                    @if ($errors->has('verifyCode'))
+                <div class="row">
+                    <div class="col-xs-7">
+                        <div class="input-icon">
+                            <i class="fa fa-check"></i>
+                            <input id="verifyCode" type="text" class="form-control" placeholder="手机验证码" name="verifyCode">
+                        </div>
+                        @if ($errors->has('verifyCode'))
+                            <span class="help-block">
+                                {{ $errors->first('verifyCode') }}
+                            </span>
+                        @endif
+                    </div>
+                    <div class="col-xs-5">
                         <span class="help-block">
-                            <strong>{{ $errors->first('verifyCode') }}</strong>
+                            <a href="javascript:;" class="js-send">点击发送验证码</a>
                         </span>
-                    @endif
+                    </div>
                 </div>
             </div>
 
@@ -102,36 +109,34 @@
                 <label for="password" class="control-label visible-ie8 visible-ie9">密码</label>
 
                 <div class="input-icon">
-                    <input id="password" type="password" class="form-control" name="password">
-
-                    @if ($errors->has('password'))
-                        <span class="help-block">
-                            <strong>{{ $errors->first('password') }}</strong>
-                        </span>
-                    @endif
+                    <i class="fa fa-lock"></i>
+                    <input id="password" type="password" class="form-control" placeholder="密码" name="password">
                 </div>
+                @if ($errors->has('password'))
+                    <span class="help-block">
+                        {{ $errors->first('password') }}
+                    </span>
+                @endif
             </div>
 
             <div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
-                <label for="password-confirm" class="control-label visible-ie8 visible-ie9">确认地址</label>
+                <label for="password-confirm" class="control-label visible-ie8 visible-ie9">确认密码</label>
 
                 <div class="input-icon">
-                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation">
-
-                    @if ($errors->has('password_confirmation'))
-                        <span class="help-block">
-                            <strong>{{ $errors->first('password_confirmation') }}</strong>
-                        </span>
-                    @endif
+                    <i class="fa fa-check"></i>
+                    <input id="password-confirm" type="password" class="form-control" placeholder="确认密码" name="password_confirmation">
                 </div>
+                @if ($errors->has('password_confirmation'))
+                    <span class="help-block">
+                        {{ $errors->first('password_confirmation') }}
+                    </span>
+                @endif
             </div>
 
             <div class="form-group">
-                <div class="input-icon col-md-offset-4">
-                    <button type="submit" class="btn btn-primary">
-                        注册
-                    </button>
-                </div>
+                <button type="submit" class="btn green btn-block">
+                    注册
+                </button>
             </div>
         </form>
     </div>

@@ -166,7 +166,7 @@ elixir(function(mix) {
 
     .sass([
         'backend/pages/login.scss'
-    ], 'public/css/backend/login.css')
+    ], 'public/css/login.css')
 
     .styles([
         'backend/plugin.css',

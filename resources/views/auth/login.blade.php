@@ -14,9 +14,9 @@
     <link rel="shortcut icon" href="favicon.ico"/>
     <!-- Styles -->
     @yield('before-styles-end')
-    {!! Html::style(elixir('css/backend/default.css'),['id'=>'style_color']) !!}
-    {!! Html::style(elixir('css/backend/components.css'),['id'=>'style_components']) !!}
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/backend/login.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/vendor/bootstrap.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/vendor/font-awesome.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/login.css') }}">
     @yield('after-styles-end')
     @yield('css')
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -35,7 +35,7 @@
         <form class="login-form" role="form" method="POST" action="{{ route('login') }}">
             {{ csrf_field() }}
             <h3 class="form-title">登录</h3>
-            <div class="alert alert-danger{{ $errors->has('username') || $errors->has('password') ? ' display-show' : ' display-hide' }}">
+            <div class="alert alert-danger{{ $errors->has('username') || $errors->has('password') ? '' : ' hide' }}">
                 <button type="button" class="close" data-dismiss="alert"></button>
                 <ul>
                     @if ($errors->first('username')) 

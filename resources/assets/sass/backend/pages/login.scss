@@ -26,7 +26,9 @@ Login page
     @include border-radius(7px);
 
     h3 {
-      color: #000;
+      color: #000;    
+      font-size: 24px;
+      font-weight: 300;
     }
 
     h4  {
@@ -36,6 +38,9 @@ Login page
     p {
       color: #222;
       text-align:center;
+      &#wait {
+        margin: 0;
+      }
     }
 
     ul {
@@ -51,15 +56,14 @@ Login page
     }
 
     .input-icon {
+      position: relative;
+      left: 0;
       border-left: 2px solid #44B6AE !important;
-      @include border-radius($general-border-radius);
       .form-control {
         border-left: 0;   
+        padding-left: 33px;
+        outline: 0!important;
       }
-    }
-
-    .forget-form,.register-form {
-      display: none;
     }
 
     .form-title {
@@ -80,6 +84,7 @@ Login page
         padding-left: 0;
         margin-top: 8px;
         display: inline-block;
+        font-weight:400;
       }
 
       .btn {
@@ -192,4 +197,48 @@ div {
       margin-top:0;
     }
   }
+}
+
+.btn, .form-control {
+  box-shadow: none!important;
+}
+
+.input-icon>i {
+  color: #ccc;
+  position: absolute;
+  margin: 11px 2px 4px 10px;
+  z-index: 3;
+  width: 16px;
+  font-size: 16px;
+  text-align: center;
+  left: 0;
+  display: inline-block;
+  line-height: 14px;
+  -webkit-font-smoothing: antialiased;
+}
+.help-block {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+input,button,div{
+  -webkit-border-radius: 0!important;
+  -moz-border-radius: 0!important;
+  border-radius: 0!important;
+}
+
+.btn.green {
+  color: #FFF;
+  background-color: #32c5d2;
+  border-color: #32c5d2;
+  &:hover {
+    background-color: #26a1ab;
+    border-color: #2499a3;
+  }
+}
+.control-label {
+  margin-top: 1px;
+  font-weight: 400;
+}
+.visible-ie9, .visible-ie8 {
+  display: none;
 }
