@@ -188,8 +188,8 @@ return [
             'smsKey'  => 'your SMS_KEY',
         ],
         'ChangZhuo' => [
-            'account' => 'hangyuncheng',
-            'password' => '152528',
+            'account' => env('CHANGZHUO_ACCOUNT'),
+            'password' => env('CHANGZHUO_PASSWORD'),
         ]
     ],
 ];
