@@ -14,8 +14,8 @@
     <link rel="shortcut icon" href="favicon.ico"/>
     <!-- Styles -->
     @yield('before-styles-end')
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/vendor/bootstrap.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/vendor/font-awesome.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/global/vendor/bootstrap.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/global/vendor/font-awesome.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/login.css') }}">
     @yield('after-styles-end')
     @yield('css')
