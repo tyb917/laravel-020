@@ -26,6 +26,9 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        Passport::routes(); 
+        //分发访问 tokens 和 撤销访问 tokens，客户端，私有访问 tokens 注册所必需的路由
+        Passport::routes();
+        //清理失效的 Tokens
+        Passport::pruneRevokedTokens();
     }
 }

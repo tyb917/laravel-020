@@ -214,7 +214,9 @@ return [
         /**
          * 极验验证
          */
-        Germey\Geetest\GeetestServiceProvider::class
+        Germey\Geetest\GeetestServiceProvider::class,
+        //dingo api
+        Dingo\Api\Provider\LaravelServiceProvider::class,
     ],
 
     /*
@@ -297,6 +299,8 @@ return [
          * 极验验证
          */
         'Geetest' => Germey\Geetest\Geetest::class,
+        'Api' => Dingo\Api\Facade\API::class,
+        'ApiRoute' => Dingo\Api\Facade\Route::class,
 
     ],
 
