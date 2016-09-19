@@ -15,9 +15,11 @@ use Illuminate\Http\Request;
 $api = Api::router();
 
 $api->version('v1', ['namespace' => 'App\Http\Controllers\Api\V1'], function ($api) {
-   $api->get('/login','AuthController@authenticate');
-   $api->get('/user', function (Request $request) {
-   		dd($request);
+	$api->group(['namespace' => 'Auth'], function ($api) {
+   		$api->post('/login','AuthController@authenticate');
+   		$api->post('/register','AuthController@register');
+	});
+   	$api->get('/user', function (Request $request) {
 	    return $request->user();
 	})->middleware('auth:api');
 });

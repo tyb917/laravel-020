@@ -14,7 +14,7 @@ return [
     */
     'alpha_dash_upr_first'           => ':attribute 只能由小写字母组成且首字母必须大写。',
     'alpha_dash_except_num'           => ':attribute 只能由小写字母、横杠组成。',
-    'is_mobile'           => ':attribute 请输入正确的手机号码！',
+    'is_mobile'            => ':attribute 号码不正确。',
     'accepted'             => ':attribute 必须接受。',
     'active_url'           => ':attribute 不是一个有效的网址。',
     'after'                => ':attribute 必须是一个在 :date 之后的日期。',
@@ -79,6 +79,8 @@ return [
     'unique'               => ':attribute 已经存在。',
     'url'                  => ':attribute 格式不正确。',
     'verify_code'          => ':attribute 不正确。',
+    'confirm_mobile_not_change' => '手机号码不能变更。',
+    'zh_mobile'                 => '手机号码不正确。',
 
     /*
     |--------------------------------------------------------------------------

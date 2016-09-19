@@ -169,7 +169,10 @@ return [
 
     'auth' => [
         'basic' => function ($app) {
-            return new Dingo\Api\Auth\Provider\Basic($app['auth']);
+            return new Dingo\Api\Auth\Provider\Basic($app['auth'], 'email');
+        },
+        'jwt' => function ($app) {
+            return new Dingo\Api\Auth\Provider\JWT($app['Tymon\JWTAuth\JWTAuth']);
         },
         'oauth' => function ($app) {
             $provider = new Dingo\Api\Auth\Provider\OAuth2($app['oauth2-server.authorizer']->getChecker());
