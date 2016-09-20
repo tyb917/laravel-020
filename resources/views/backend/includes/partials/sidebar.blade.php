@@ -7,12 +7,12 @@
                 <!-- 快速搜索开始 -->
                 <form class="sidebar-search sidebar-search-bordered sidebar-search-solid" action="extra_search.html" method="POST">
                     <a href="javascript:;" class="remove">
-                    <i class="icon-close"></i>
+                        <i class="icon-close"></i>
                     </a>
                     <div class="input-group">
                         <input type="text" class="form-control" placeholder="Search...">
                         <span class="input-group-btn">
-                        <a href="javascript:;" class="btn submit"><i class="icon-magnifier"></i></a>
+                            <a href="javascript:;" class="btn submit"><i class="icon-magnifier"></i></a>
                         </span>
                     </div>
                 </form>
@@ -20,28 +20,28 @@
             </li>
             <li class="start {{ active_class(if_route_pattern('admin.dashboard')) }} ">
                 <a href="{{ route('admin.dashboard') }}">
-                <i class="icon-home"></i>
-                <span class="title">首页</span>
-                <span class="selected"></span>
+                    <i class="icon-home"></i>
+                    <span class="title">首页</span>
+                    <span class="selected"></span>
                 </a>
             </li>
             <li>
                 <a href="/admin/service">
-                <i class="icon-basket"></i>
-                <span class="title">服务管理</span>
+                    <i class="icon-basket"></i>
+                    <span class="title">服务管理</span>
                 </a>
             </li>
             <li>
                 <a href="/admin/certify">
-                <i class="icon-user-following"></i>
-                <span class="title">认证管理</span>
+                    <i class="icon-user-following"></i>
+                    <span class="title">认证管理</span>
                 </a>
             </li>
             <li>
                 <a href="javascript:;">
-                <i class="icon-people"></i>
-                <span class="title">用户管理</span>
-                <span class="arrow "></span>
+                    <i class="icon-people"></i>
+                    <span class="title">用户管理</span>
+                    <span class="arrow "></span>
                 </a>
                 <ul class="sub-menu">
                     <li>
@@ -57,9 +57,9 @@
             </li>
             <li class="{{ active_class(if_route_pattern('admin.access*')) }}">
                 <a href="javascript:;">
-                <i class="icon-shield"></i>
-                <span class="title">管理员管理</span>
-                <span class="arrow "></span>
+                    <i class="icon-shield"></i>
+                    <span class="title">管理员管理</span>
+                    <span class="arrow "></span>
                 </a>
                 <ul class="sub-menu">
                     <li class="{{ active_class(if_route('admin.access.user.index')) }}">
@@ -75,39 +75,60 @@
             </li>
             <li>
                 <a href="/admin/order">
-                <i class="icon-basket"></i>
-                <span class="title">订单列表</span>
+                    <i class="icon-basket"></i>
+                    <span class="title">订单列表</span>
                 </a>
             </li>
             <li>
                 <a href="/admin/withdraw">
-                <i class="icon-credit-card"></i>
-                <span class="title">提现列表</span>
+                    <i class="icon-credit-card"></i>
+                    <span class="title">提现列表</span>
                 </a>
             </li>
-            <li>
-                <a href="/admin/message">
-                <i class="icon-envelope-open"></i>
-                <span class="title">消息推送</span>
+            <li class="{{ active_class(if_route_pattern('admin.notification*')) }}">
+                <a href="javascript:;">
+                    <i class="icon-envelope-open"></i>
+                    <span class="title">通知管理</span>
+                    <span class="arrow "></span>
                 </a>
+                <ul class="sub-menu">
+                    <li class="{{ active_class(if_route('admin.notification.index')) }}">
+                        <a href="{{ route('admin.notification.index') }}">通知统计</a>
+                    </li>
+                    <li class="{{ active_class(if_route('admin.notification.mail*')) }}">
+                        <a href="{{ route('admin.notification.mail.index') }}">邮件通知</a>
+                    </li>
+                    <li class="{{ active_class(if_route('admin.notification.sms*')) }}">
+                        <a href="{{ route('admin.notification.sms.index') }}">短信通知</a>
+                    </li>
+                    <li class="{{ active_class(if_route('admin.notification.push*')) }}">
+                        <a href="{{ route('admin.notification.push.index') }}">推送通知</a>
+                    </li>
+                    <li class="{{ active_class(if_route('admin.notification.payment*')) }}">
+                        <a href="{{ route('admin.notification.payment.index') }}">支付通知</a>
+                    </li>
+                    <li class="{{ active_class(if_route('admin.notification.system*')) }}">
+                        <a href="{{ route('admin.notification.system.index') }}">系统通知</a>
+                    </li>
+                </ul>
             </li>
             <li>
                 <a href="/admin/feedback">
-                <i class="icon-note"></i>
-                <span class="title">意见反馈</span>
+                    <i class="icon-note"></i>
+                    <span class="title">意见反馈</span>
                 </a>
             </li>
             <li>
                 <a href="/admin/report">
-                <i class="icon-dislike"></i>
-                <span class="title">投诉举报</span>
+                    <i class="icon-dislike"></i>
+                    <span class="title">投诉举报</span>
                 </a>
             </li>
             <li class="last">
                 <a href="javascript:;">
-                <i class="icon-settings"></i>
-                <span class="title">系统管理</span>
-                <span class="arrow "></span>
+                    <i class="icon-settings"></i>
+                    <span class="title">系统管理</span>
+                    <span class="arrow "></span>
                 </a>
                 <ul class="sub-menu">
                     <li>

@@ -38,5 +38,16 @@ Route::group(['namespace' => 'Backend', 'as' => 'admin.', 'middleware' => 'admin
         Route::get('/permission/get', 'PermissionController@get')->name('permission.get');
         Route::resource('/permission', 'PermissionController');
     });
+
+    Route::group(['namespace' => 'Notifications', 'as' => 'notification.', 'prefix' => 'notification'], function () {
+        Route::get('/', 'IndexController@index')->name('index');//通知首页
+        Route::resource('/sms', 'SmsController');//短信通知
+        Route::resource('/mail', 'MailController');//邮件通知
+        Route::resource('/push', 'PushController');//推送通知
+        Route::resource('/payment', 'PaymentController');//支付通知
+        Route::resource('/system', 'SystemController');//系统通知
+    });
+        
+    Route::get('/', 'DashboardController@index')->name('index');
     Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 });

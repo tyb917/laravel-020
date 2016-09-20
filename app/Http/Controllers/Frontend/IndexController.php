@@ -8,9 +8,6 @@ class IndexController extends Controller
 {
     public function index()
     {
-    	// $user = \App\User::first();
-    	// $test = \App\User::first();
-    	// $user->notify(new EmailPublished($test));
         return view('frontend.index');
     }
 
