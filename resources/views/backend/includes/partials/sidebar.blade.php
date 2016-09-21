@@ -85,9 +85,27 @@
                     <span class="title">提现列表</span>
                 </a>
             </li>
-            <li class="{{ active_class(if_route_pattern('admin.notification*')) }}">
+            <li class="{{ active_class(if_route_pattern('admin.newsletter*')) }}">
                 <a href="javascript:;">
                     <i class="icon-envelope-open"></i>
+                    <span class="title">订阅管理</span>
+                    <span class="arrow "></span>
+                </a>
+                <ul class="sub-menu">
+                    <li class="{{ active_class(if_route('admin.newsletter.index')) }}">
+                        <a href="{{ route('admin.newsletter.index') }}">订阅列表</a>
+                    </li>
+                    <li class="{{ active_class(if_route('admin.newsletter.template.index')) }}">
+                        <a href="{{ route('admin.newsletter.template.index') }}">订阅模板</a>
+                    </li>
+                    <li class="{{ active_class(if_route('admin.newsletter.subscriber.index')) }}">
+                        <a href="{{ route('admin.newsletter.subscriber.index') }}">订阅者</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="{{ active_class(if_route_pattern('admin.notification*')) }}">
+                <a href="javascript:;">
+                    <i class="icon-bell"></i>
                     <span class="title">通知管理</span>
                     <span class="arrow "></span>
                 </a>

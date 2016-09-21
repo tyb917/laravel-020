@@ -39,6 +39,9 @@ Route::group(['namespace' => 'Backend', 'as' => 'admin.', 'middleware' => 'admin
         Route::resource('/permission', 'PermissionController');
     });
 
+    /**
+     * 通知管理
+     */
     Route::group(['namespace' => 'Notifications', 'as' => 'notification.', 'prefix' => 'notification'], function () {
         Route::get('/', 'IndexController@index')->name('index');//通知首页
         Route::resource('/sms', 'SmsController');//短信通知
@@ -46,6 +49,14 @@ Route::group(['namespace' => 'Backend', 'as' => 'admin.', 'middleware' => 'admin
         Route::resource('/push', 'PushController');//推送通知
         Route::resource('/payment', 'PaymentController');//支付通知
         Route::resource('/system', 'SystemController');//系统通知
+    });
+    /**
+     * 营销管理
+     */
+    Route::group(['namespace' => 'Newsletters', 'as' => 'newsletter.', 'prefix' => 'newsletter'], function () {
+        Route::resource('/', 'NewsletterController@index');//订阅
+        Route::resource('/template', 'TemplateController');//订阅模板
+        Route::resource('/subscriber', 'SubscriberController');//订阅用户
     });
         
     Route::get('/', 'DashboardController@index')->name('index');
